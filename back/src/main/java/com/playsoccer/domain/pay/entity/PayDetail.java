@@ -1,26 +1,27 @@
 package com.playsoccer.domain.pay.entity;
 
-import com.playsoccer.domain.player.entity.Player;
 import jakarta.persistence.*;
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
+import java.time.LocalDate;
 
 @Entity
 @Getter
-@Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class Pay {
+public class PayDetail {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long payId;
+    private Long payDetailId;
     @ManyToOne
-    @JoinColumn(name = "id",nullable = false)
-    private Player player;
+    @JoinColumn(name = "payId", nullable = false)
+    private Pay pay;
     @Column(length = 15, nullable = false)
     private String status;
     @Column(nullable = false)
-    private Integer amount;
-    @Column(length = 30, nullable = false)
-    private String payType;
+    private LocalDate insertDate;
 }

@@ -19,14 +19,16 @@ public class GameRecord {
     private Game game;
 
     @ManyToOne
-    @JoinColumn(name = "id")
+    @JoinColumn(name = "id",nullable = false)
     private Player player;
 
     @ManyToOne
-    @JoinColumn(name = "fieldId")
+    @JoinColumn(name = "fieldId",nullable = false)
     private Stadium stadium;
 
+    @Column(nullable = false)
     private Integer playScore;
+    @Column(nullable = false)
     private Integer warn;
 
 }

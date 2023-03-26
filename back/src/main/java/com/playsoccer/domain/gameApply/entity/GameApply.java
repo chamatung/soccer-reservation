@@ -18,14 +18,14 @@ public class GameApply {
     private Long gameApplyId;
 
     @ManyToOne
-    @JoinColumn(name = "gameId")
+    @JoinColumn(name = "gameId",nullable = false)
     private Game game;
 
     @ManyToOne
-    @JoinColumn(name = "id")
+    @JoinColumn(name = "id",nullable = false)
     private Player player;
 
     @ManyToOne
-    @JoinColumn(name = "fieldId")
+    @JoinColumn(name = "fieldId",nullable = false)
     private Stadium stadium;
 }

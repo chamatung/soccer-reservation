@@ -10,7 +10,7 @@ function App() {
   let loginPath = window.location.pathname === "/login" ? true : false;
   let loginCheck = true;
   if (loginCheck) {
-    component = <Login />;
+    component = <Main />;
   } else {
     component = <Main />;
   }

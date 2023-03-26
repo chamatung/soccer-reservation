@@ -24,9 +24,13 @@ public class Game {
     @ManyToOne(fetch = FetchType.LAZY) // 해당 경기 기준으로는 경기구장은 1개 근데 경기구장 기준으로는 oneToMany
     @JoinColumn(name = "fieldId")
     private Stadium stadium;
+    @Column(nullable = false)
     private Integer totalMember;
+    @Column(nullable = false)
     private LocalDate gameDate;
+    @Column(nullable = false)
     private LocalDate startTime;
+    @Column(length = 15, nullable = false)
     private String status;
 
     @OneToMany(mappedBy = "game")

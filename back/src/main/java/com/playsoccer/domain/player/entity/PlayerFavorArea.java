@@ -14,6 +14,7 @@ public class PlayerFavorArea {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id")
     private Player player; //선수
+    @Column(length = 30, nullable = false)
     private String name;
 
     @ManyToOne

@@ -18,15 +18,21 @@ public class StadiumManager {
     private Long managerId;
 
     @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "fieldId")
+    @JoinColumn(name = "fieldId", nullable = false)
     private Stadium stadium;
-
+    @Column(length = 255, nullable = false)
     private String pw;
+    @Column(length = 20, nullable = false)
     private String name;
+    @Column(length = 11, nullable = false)
     private String phone;
+    @Column(length = 100, nullable = false)
     private String email;
+    @Column(length = 255, nullable = false)
     private String address;
+    @Column(length = 100, nullable = true)
     private String addressDetail;
-    private String managerLevel;
+    @Column(length = 5, nullable = false)
+    private String managerLevel; //주 , 부
 
 }

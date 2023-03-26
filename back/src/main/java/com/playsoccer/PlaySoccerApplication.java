@@ -6,7 +6,6 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
 public class PlaySoccerApplication {
-
     public static void main(String[] args) {
         SpringApplication.run(PlaySoccerApplication.class, args);
         // 이거 사용하려면 일단 persitence.xml 설정 후 해야함...
