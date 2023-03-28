@@ -1,8 +1,12 @@
-import TestStore from "./TestStore";
+import AppStore from "./AppStore";
+import HomeStore from "./HomeStore";
+import ReservationStore from "./ReservationStore";
 
 class RootStore {
   constructor() {
-    this.testStore = new TestStore(this);
+    this.appStore = new AppStore(this);
+    this.homeStore = new HomeStore(this);
+    this.reservationStore = new ReservationStore(this);
   }
 }
 

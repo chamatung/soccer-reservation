@@ -11,9 +11,11 @@ import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Map;
+
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/api/s/member")
+@RequestMapping("/api/s/player")
 public class PlayerController {
 
     private final PlayerService playerService;
@@ -21,13 +23,13 @@ public class PlayerController {
     /*
         회원가입
      */
-    @PostMapping("regist")
-    public ResponseEntity<MultiValueMap<String, String>> regist(RegistDTO regist) {
+    @PostMapping("/regist")
+    public ResponseEntity<Map<String, String>> regist(@RequestBody(required = false)RegistDTO regist) {
         return playerService.regist(regist);
     }
     //controller쪽 체크사항 service로 보내기
-    @PostMapping("sign-in")
-    public ResponseEntity<MultiValueMap<String, String>> signIn(@RequestBody(required = false) LoginDTO login) {
+    @PostMapping("/signIn")
+    public ResponseEntity<Map<String, String>> signIn(@RequestBody(required = false) LoginDTO login) {
         return playerService.signIn(login);
     }
 }

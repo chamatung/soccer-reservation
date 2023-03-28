@@ -32,7 +32,7 @@ public class Game {
     private LocalDate startTime;
     @Column(length = 15, nullable = false)
     private String status;
-
+    @Column
     @OneToMany(mappedBy = "game")
     private List<GameApply> gameApplies = new ArrayList<>();
 

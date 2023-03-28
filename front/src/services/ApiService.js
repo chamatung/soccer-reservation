@@ -6,7 +6,7 @@ const Api = axios.create({
   headers: { "Content-Type": "application/json" },
 });
 
-const apiPrefixUri = "http://localhost:8085/s/";
+const apiPrefixUri = "http://localhost:8085/api/s/";
 
 class ApiService {
   //config는 기본 설정를 덮어 씌우고 싶을 떄, 즉 변경하고 싶을 때,

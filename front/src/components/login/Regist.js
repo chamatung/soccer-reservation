@@ -13,6 +13,8 @@ import {
   Link,
   InputAdornment,
 } from "@material-ui/core";
+import apiService from "../../services/ApiService";
+import { useNavigate } from "react-router-dom";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -76,6 +78,7 @@ const regions = [
 const foots = ["left", "right"];
 
 export default function SignUpSide() {
+  let navigate = useNavigate();
   const classes = useStyles();
   const [regist, setRegist] = useState({
     name: "",
@@ -100,12 +103,19 @@ export default function SignUpSide() {
       [e.target.name]: e.target.value,
     };
     setRegist(nextRegist);
-    console.log(nextRegist);
   };
 
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    //TODO: form validation and submission
+  const handleSubmit = () => {
+    if (true) {
+      const apiParam = regist;
+
+      apiService
+        .post("player/regist", apiParam)
+        .then((response) => {
+          navigate("/login");
+        })
+        .catch(({ response }) => {});
+    }
   };
 
   return (
@@ -116,7 +126,7 @@ export default function SignUpSide() {
           <Typography component='h1' variant='h5'>
             Sign up
           </Typography>
-          <form className={classes.form} onSubmit={handleSubmit}>
+          <div className={classes.form} onSubmit={handleSubmit}>
             <Grid container spacing={2}>
               <Grid item xs={12}>
                 <TextField
@@ -340,6 +350,7 @@ export default function SignUpSide() {
               variant='contained'
               color='primary'
               className={classes.submit}
+              onClick={handleSubmit}
             >
               Sign Up
             </Button>
@@ -350,7 +361,7 @@ export default function SignUpSide() {
                 </Link>
               </Grid>
             </Grid>
-          </form>
+          </div>
         </div>
       </Grid>
     </Grid>

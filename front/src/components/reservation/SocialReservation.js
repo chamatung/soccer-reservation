@@ -1,9 +1,10 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import Tabs from "@material-ui/core/Tabs";
 import Tab from "@material-ui/core/Tab";
 import { Box, Container } from "@material-ui/core";
 import StadiumList from "./StadiumList";
+import { inject, observer } from "mobx-react";
 
 const useStyles = makeStyles((theme) => ({
   container: {
@@ -50,42 +51,56 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function SocialReservation() {
-  const classes = useStyles();
-  const [value, setValue] = React.useState(0);
+const SocialReservation = inject("reservationStore")(
+  observer(({ reservationStore }) => {
+    const classes = useStyles();
+    const [value, setValue] = React.useState(0);
 
-  const handleChange = (event, newValue) => {
-    setValue(newValue);
-  };
+    const handleChange = (event, newValue) => {
+      setValue(newValue);
+    };
 
-  return (
-    <Container className={classes.container}>
-      <Box
-        sx={{
-          flexGrow: 1,
-          maxWidth: { sx: "400" },
-          bgcolor: "background.paper",
-        }}
-      >
-        <Tabs
-          value={value}
-          onChange={handleChange}
-          variant='scrollable'
-          scrollButtons='on'
-          aria-label='visible arrows tabs example'
+    useEffect(() => {
+      reservationStore.init();
+    }, []);
+    const {
+      week,
+      nowYear,
+      nextYear,
+      nowMonth,
+      nextMonth,
+      nowDays,
+      nextDays,
+      today,
+    } = reservationStore;
+
+    return (
+      <Container className={classes.container}>
+        <Box
+          sx={{
+            flexGrow: 1,
+            maxWidth: { sx: "400" },
+            bgcolor: "background.paper",
+          }}
         >
-          <Tab label='22 수' />
-          <Tab label='23 목' />
-          <Tab label='24 금' />
-          <Tab label='25 토' />
-          <Tab label='26 일' />
-          <Tab label='25 토' />
-          <Tab label='26 일' />
-          <Tab label='25 토' />
-          <Tab label='26 일' />
-        </Tabs>
-      </Box>
-      <StadiumList />
-    </Container>
-  );
-}
+          <Tabs
+            value={value}
+            onChange={handleChange}
+            variant='scrollable'
+            scrollButtons='on'
+            aria-label='visible arrows tabs example'
+          >
+            {nowDays.map((nowDay, index) => {
+              return <Tab label={nowDay.date + " " + nowDay.day} />;
+            })}
+            {nextDays?.map((nextDay, index) => {
+              return <Tab label={nextDay.date + " " + nextDay.day} />;
+            })}
+          </Tabs>
+        </Box>
+        <StadiumList />
+      </Container>
+    );
+  })
+);
+export default SocialReservation;

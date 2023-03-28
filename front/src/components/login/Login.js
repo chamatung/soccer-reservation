@@ -9,6 +9,9 @@ import {
   Link,
 } from "@material-ui/core";
 import { LockOutlined } from "@material-ui/icons";
+import apiService from "../../services/ApiService";
+import { useNavigate } from "react-router-dom";
+import { inject, observer } from "mobx-react";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -54,77 +57,103 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function SignInSide() {
-  const classes = useStyles();
-  const [login, setLogin] = useState({
-    email: "",
-    password: "",
-  });
+const Login = inject("appStore")(
+  observer(({ appStore }) => {
+    let navigate = useNavigate();
+    const classes = useStyles();
+    const [login, setLogin] = useState({
+      email: "",
+      password: "",
+    });
 
-  const changeData = (e) => {
-    const nextLogin = {
-      ...login,
-      [e.target.name]: e.target.value,
+    const changeData = (e) => {
+      const nextLogin = {
+        ...login,
+        [e.target.name]: e.target.value,
+      };
+      setLogin(nextLogin);
     };
-    setLogin(nextLogin);
-    console.log(nextLogin);
-  };
 
-  return (
-    <Grid container component='main' className={classes.root}>
-      <Grid item xs={false} sm={4} md={7} className={classes.image} />
-      <Grid item xs={12} sm={8} md={5} component={Paper} elevation={6} square>
-        <div className={classes.paper}>
-          <LockOutlined className={classes.avatar} />
-          <Typography component='h1' variant='h5'>
-            Sign in
-          </Typography>
-          <form className={classes.form} noValidate>
-            <TextField
-              variant='outlined'
-              margin='normal'
-              required
-              fullWidth
-              id='email'
-              label='Email Address'
-              name='email'
-              autoComplete='email'
-              autoFocus
-              value={login.email}
-              onChange={(e) => changeData(e)}
-            />
-            <TextField
-              variant='outlined'
-              margin='normal'
-              required
-              fullWidth
-              name='password'
-              label='Password'
-              type='password'
-              id='password'
-              autoComplete='current-password'
-              value={login.pw}
-              onChange={(e) => changeData(e)}
-            />
-            <Button
-              type='submit'
-              fullWidth
-              variant='contained'
-              color='primary'
-              className={classes.submit}
-            >
-              Sign In
-            </Button>
-            <Grid container justify='flex-end'>
-              <Grid item>
-                <Link href='/regist' variant='body2'>
-                  Sign up
-                </Link>
+    const handleLogin = () => {
+      if (true) {
+        const apiParam = login;
+        apiService
+          .post("player/signIn", apiParam)
+          .then((response) => {
+            appStore.loginCheckChange(true); // 로그인 성공 시 변경
+
+            const { email, name } = response.data;
+            appStore.changeData("email", email);
+            appStore.changeData("name", name);
+
+            navigate("/");
+          })
+          .catch(({ response }) => {
+            let { msg } = response?.data;
+            alert(msg);
+          });
+      }
+    };
+
+    return (
+      <Grid container component='main' className={classes.root}>
+        <Grid item xs={false} sm={4} md={7} className={classes.image} />
+        <Grid item xs={12} sm={8} md={5} component={Paper} elevation={6} square>
+          <div className={classes.paper}>
+            <LockOutlined className={classes.avatar} />
+            <Typography component='h1' variant='h5'>
+              Sign in
+            </Typography>
+            <div className={classes.form}>
+              <TextField
+                variant='outlined'
+                margin='normal'
+                required
+                fullWidth
+                id='email'
+                label='Email Address'
+                name='email'
+                autoComplete='email'
+                autoFocus
+                value={login.email}
+                onChange={(e) => changeData(e)}
+              />
+              <TextField
+                variant='outlined'
+                margin='normal'
+                required
+                fullWidth
+                name='password'
+                label='Password'
+                type='password'
+                id='password'
+                autoComplete='current-password'
+                value={login.pw}
+                onChange={(e) => changeData(e)}
+              />
+              <Button
+                type='submit'
+                fullWidth
+                variant='contained'
+                color='primary'
+                className={classes.submit}
+                onClick={handleLogin}
+              >
+                Sign In
+              </Button>
+              <Grid container justify='flex-end'>
+                <Grid item>
+                  <Link href='/regist' variant='body2'>
+                    Sign up
+                  </Link>
+                </Grid>
               </Grid>
-            </Grid>
-          </form>
-        </div>
+            </div>
+          </div>
+        </Grid>
       </Grid>
-    </Grid>
-  );
-}
+    );
+  })
+);
+
+export default Login;

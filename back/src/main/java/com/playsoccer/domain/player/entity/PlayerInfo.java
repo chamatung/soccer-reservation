@@ -8,19 +8,14 @@ import org.hibernate.annotations.DynamicInsert;
 
 @Entity
 @Getter
-@Setter
+@Builder
 @NoArgsConstructor
 @AllArgsConstructor
 //@DynamicInsert//ColumnDefault 컬럼을 적용시키기 위해
 public class PlayerInfo {
 
     @Id
-    @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "id")
-    private Player player; //선수
-//    @ColumnDefault("비기너")
-//    @Column(length = 15)
-//    private String level1;
+    private Long id;
     @Column(nullable = false)
     private int carrer;
     @Column(length = 15, nullable = false)
@@ -34,6 +29,12 @@ public class PlayerInfo {
     @Column(length = 30, nullable = false)
     private String nation;
 
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "id")
+    private Player player; //선수
 
+    public void changeId(Long id) {
+        this.id = id;
+    }
 
 }

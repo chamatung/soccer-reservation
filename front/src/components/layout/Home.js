@@ -9,6 +9,7 @@ import {
   Grid,
   Paper,
 } from "@material-ui/core";
+import { inject, observer } from "mobx-react";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -27,28 +28,36 @@ const useStyles = makeStyles((theme) => ({
     color: theme.palette.text.secondary,
   },
 }));
+const Home = inject("homeStore")(
+  observer(({ homeStore }) => {
+    const classes = useStyles();
+    const { email, name } = homeStore.player;
 
-export default function Home() {
-  const classes = useStyles();
+    const handleLogout = () => {
+      homeStore.handleLogout();
+    };
+    return (
+      <div className={classes.root}>
+        <AppBar position='static'>
+          <Toolbar>
+            <img
+              src={"https://source.unsplash.com/1600x900/?sports"}
+              alt='PLAB Football'
+              className={classes.logo}
+            />
+            <Typography variant='h6' className={classes.title}>
+              Soccer Play
+            </Typography>
+            <Typography>{name} 님</Typography>
+            <Button color='inherit' onClick={handleLogout}>
+              Logout
+            </Button>
+          </Toolbar>
+        </AppBar>
 
-  return (
-    <div className={classes.root}>
-      <AppBar position='static'>
-        <Toolbar>
-          <img
-            src={"https://source.unsplash.com/1600x900/?sports"}
-            alt='PLAB Football'
-            className={classes.logo}
-          />
-          <Typography variant='h6' className={classes.title}>
-            Soccer Play
-          </Typography>
-          <Button color='inherit'>Logout</Button>
-          <Button color='inherit'>Login</Button>
-        </Toolbar>
-      </AppBar>
-
-      <div>{/* <DateBar style={{ padding: "20px" }} /> */}</div>
-    </div>
-  );
-}
+        <div>{/* <DateBar style={{ padding: "20px" }} /> */}</div>
+      </div>
+    );
+  })
+);
+export default Home;

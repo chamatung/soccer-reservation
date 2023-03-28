@@ -4,34 +4,38 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="8e3ac3a9-780a-4eb1-ba41-5057e9a8d051" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/jarRepositories.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules/com.playSoccer.play-soccer.main.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/play-soccer.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/back/src/main/java/com/playsoccer/domain/pay/entity/PayDetail.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/back/src/main/java/com/playsoccer/domain/player/entity/PlayerPayInfo.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/back/src/main/java/com/playsoccer/domain/player/repository/PlayerRepository.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/back/src/main/java/com/playsoccer/domain/player/service/PlayerService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/gradle.xml" afterDir="false" />
+    <list default="true" id="8e3ac3a9-780a-4eb1-ba41-5057e9a8d051" name="Changes" comment="table column 어노테이션 추가&#10;서버측 로그인 회원가입 구현">
+      <change afterPath="$PROJECT_DIR$/back/src/main/java/com/playsoccer/domain/game/controller/GameController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/back/src/main/java/com/playsoccer/domain/game/repository/GameRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/back/src/main/java/com/playsoccer/domain/game/schedules/GameSchedule.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/back/src/main/java/com/playsoccer/domain/game/service/GameService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/back/src/main/java/com/playsoccer/domain/player/repository/PlayerInfoRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/back/src/main/java/com/playsoccer/domain/stadium/dto/StadiumDTO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/back/src/main/java/com/playsoccer/domain/stadium/repository/StadiumCustomRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/back/src/main/java/com/playsoccer/domain/stadium/repository/StadiumCustomRepositoryImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/back/src/main/java/com/playsoccer/domain/stadium/repository/StadiumRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/back/src/main/java/com/playsoccer/global/config/CorsConfig.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/back/src/main/java/com/playsoccer/global/config/JpaConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules/com.playSoccer.play-soccer.main.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules/com.playSoccer.play-soccer.main.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/back/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/back/build.gradle" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/back/src/main/java/com/playsoccer/PlaySoccerApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/back/src/main/java/com/playsoccer/PlaySoccerApplication.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/back/src/main/java/com/playsoccer/domain/area/entity/Area.java" beforeDir="false" afterPath="$PROJECT_DIR$/back/src/main/java/com/playsoccer/domain/area/entity/Area.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/back/src/main/java/com/playsoccer/domain/game/entity/Game.java" beforeDir="false" afterPath="$PROJECT_DIR$/back/src/main/java/com/playsoccer/domain/game/entity/Game.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/back/src/main/java/com/playsoccer/domain/gameApply/entity/GameApply.java" beforeDir="false" afterPath="$PROJECT_DIR$/back/src/main/java/com/playsoccer/domain/gameApply/entity/GameApply.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/back/src/main/java/com/playsoccer/domain/gameRecord/entity/GameRecord.java" beforeDir="false" afterPath="$PROJECT_DIR$/back/src/main/java/com/playsoccer/domain/gameRecord/entity/GameRecord.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/back/src/main/java/com/playsoccer/domain/pay/entity/Pay.java" beforeDir="false" afterPath="$PROJECT_DIR$/back/src/main/java/com/playsoccer/domain/pay/entity/Pay.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/back/src/main/java/com/playsoccer/domain/player/controller/MemberController.java" beforeDir="false" afterPath="$PROJECT_DIR$/back/src/main/java/com/playsoccer/domain/player/controller/PlayerController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/back/src/main/java/com/playsoccer/domain/player/controller/PlayerController.java" beforeDir="false" afterPath="$PROJECT_DIR$/back/src/main/java/com/playsoccer/domain/player/controller/PlayerController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/back/src/main/java/com/playsoccer/domain/player/dto/RegistDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/back/src/main/java/com/playsoccer/domain/player/dto/RegistDTO.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/back/src/main/java/com/playsoccer/domain/player/entity/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/back/src/main/java/com/playsoccer/domain/player/entity/Player.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/back/src/main/java/com/playsoccer/domain/player/entity/PlayerFavorArea.java" beforeDir="false" afterPath="$PROJECT_DIR$/back/src/main/java/com/playsoccer/domain/player/entity/PlayerFavorArea.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/back/src/main/java/com/playsoccer/domain/player/entity/PlayerInfo.java" beforeDir="false" afterPath="$PROJECT_DIR$/back/src/main/java/com/playsoccer/domain/player/entity/PlayerInfo.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/back/src/main/java/com/playsoccer/domain/stadium/entity/Stadium.java" beforeDir="false" afterPath="$PROJECT_DIR$/back/src/main/java/com/playsoccer/domain/stadium/entity/Stadium.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/back/src/main/java/com/playsoccer/domain/stadiumManager/entity/StadiumManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/back/src/main/java/com/playsoccer/domain/stadiumManager/entity/StadiumManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/back/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/back/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/back/src/main/java/com/playsoccer/domain/player/service/PlayerService.java" beforeDir="false" afterPath="$PROJECT_DIR$/back/src/main/java/com/playsoccer/domain/player/service/PlayerService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/front/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/front/src/App.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/front/src/components/layout/Home.js" beforeDir="false" afterPath="$PROJECT_DIR$/front/src/components/layout/Home.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/front/src/components/login/Login.js" beforeDir="false" afterPath="$PROJECT_DIR$/front/src/components/login/Login.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/front/src/components/login/Regist.js" beforeDir="false" afterPath="$PROJECT_DIR$/front/src/components/login/Regist.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/front/src/components/reservation/SocialReservation.js" beforeDir="false" afterPath="$PROJECT_DIR$/front/src/components/reservation/SocialReservation.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/front/src/services/ApiService.js" beforeDir="false" afterPath="$PROJECT_DIR$/front/src/services/ApiService.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/front/src/store/RootStore.js" beforeDir="false" afterPath="$PROJECT_DIR$/front/src/store/RootStore.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/front/src/store/TestStore.js" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -40,6 +44,12 @@
   </component>
   <component name="ExternalProjectsData">
     <projectState path="$PROJECT_DIR$/back">
+      <ProjectState />
+    </projectState>
+    <projectState path="$PROJECT_DIR$/back/src/main">
+      <ProjectState />
+    </projectState>
+    <projectState path="$PROJECT_DIR$/back/src/main/generated">
       <ProjectState />
     </projectState>
   </component>
@@ -83,8 +93,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Class" />
         <option value="Interface" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -99,44 +109,45 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RequestMappingsPanelOrder0&quot;: &quot;0&quot;,
-    &quot;RequestMappingsPanelOrder1&quot;: &quot;1&quot;,
-    &quot;RequestMappingsPanelWidth0&quot;: &quot;75&quot;,
-    &quot;RequestMappingsPanelWidth1&quot;: &quot;75&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/javae/springBoot_workspace/play-soccer&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;yarn&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Facets&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.6274149&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.lookFeel&quot;,
-    &quot;spring.configuration.checksum&quot;: &quot;6b248c880fd60cbbfaafcf44b2a514c7&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RequestMappingsPanelOrder0": "0",
+    "RequestMappingsPanelOrder1": "1",
+    "RequestMappingsPanelWidth0": "75",
+    "RequestMappingsPanelWidth1": "75",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "last_opened_file_path": "C:/javae/springBoot_workspace/play-soccer/back/src/main/generated",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "yarn",
+    "project.structure.last.edited": "Modules",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.6274149",
+    "settings.editor.selected.configurable": "preferences.lookFeel",
+    "spring.configuration.checksum": "6b248c880fd60cbbfaafcf44b2a514c7",
+    "vue.rearranger.settings.migration": "true"
   },
-  &quot;keyToStringList&quot;: {
-    &quot;DatabaseDriversLRU&quot;: [
-      &quot;mysql&quot;
+  "keyToStringList": {
+    "DatabaseDriversLRU": [
+      "mysql"
     ]
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CreateClassDialog.RecentsKey">
+      <recent name="com.playsoccer.domain.stadium.repository" />
       <recent name="com.playsoccer.domain.player.service" />
     </key>
     <key name="ImportMappingsDialog.RecentPackages">
       <recent name="" />
     </key>
   </component>
-  <component name="RunManager" selected="Spring Boot.PlaySoccerApplication">
+  <component name="RunManager" selected="Gradle.back [compileJava]">
     <configuration name="back [build]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
@@ -225,11 +236,26 @@
       <updated>1679634944710</updated>
       <workItem from="1679634945873" duration="5679000" />
       <workItem from="1679646012403" duration="2390000" />
-      <workItem from="1679832710908" duration="733000" />
+      <workItem from="1679832710908" duration="1764000" />
+      <workItem from="1679880334748" duration="13290000" />
+      <workItem from="1679962773204" duration="12196000" />
+      <workItem from="1680011301570" duration="4689000" />
     </task>
+    <task id="LOCAL-00001" summary="table column 어노테이션 추가&#10;서버측 로그인 회원가입 구현">
+      <created>1679833870759</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1679833870759</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="table column 어노테이션 추가&#10;서버측 로그인 회원가입 구현" />
+    <option name="LAST_COMMIT_MESSAGE" value="table column 어노테이션 추가&#10;서버측 로그인 회원가입 구현" />
   </component>
 </project>
