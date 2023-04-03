@@ -26,16 +26,25 @@ public class Game {
     private Stadium stadium;
     @Column(nullable = false)
     private Integer totalMember;
+    @Column(length = 2,nullable = false)
+    private String gameDay;
     @Column(nullable = false)
-    private LocalDate gameDate;
-    @Column(nullable = false)
-    private LocalDate startTime;
+    private Integer startTime;
     @Column(length = 15, nullable = false)
     private String status;
-    @Column
-    @OneToMany(mappedBy = "game")
-    private List<GameApply> gameApplies = new ArrayList<>();
 
-    @OneToMany(mappedBy = "game")
-    private List<GameRecord> gameRecords = new ArrayList<>();
+    @Column(length = 4, nullable = false)
+    private String gameYear;
+    @Column(length = 2, nullable = false)
+    private String gameMonth;
+    @Column(length = 10, nullable = false)
+    private String gameAvailability;
+
+//    @Column
+//    @OneToMany(mappedBy = "game")
+//    private List<GameApply> gameApplies = new ArrayList<>();
+//
+//    @OneToMany(mappedBy = "game")
+//    private List<GameRecord> gameRecords = new ArrayList<>();
+
 }

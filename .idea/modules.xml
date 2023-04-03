@@ -2,7 +2,6 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/com.playSoccer.play-soccer.main.iml" filepath="$PROJECT_DIR$/.idea/modules/com.playSoccer.play-soccer.main.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/play-soccer.iml" filepath="$PROJECT_DIR$/.idea/play-soccer.iml" />
     </modules>
   </component>

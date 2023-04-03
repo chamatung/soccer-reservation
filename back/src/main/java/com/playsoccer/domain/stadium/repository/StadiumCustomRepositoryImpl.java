@@ -9,6 +9,7 @@ import lombok.RequiredArgsConstructor;
 import java.util.List;
 
 import static com.playsoccer.domain.stadium.entity.QStadium.stadium;
+import static com.playsoccer.domain.game.entity.QGame.game;
 
 
 @RequiredArgsConstructor
@@ -16,14 +17,16 @@ public class StadiumCustomRepositoryImpl implements StadiumCustomRepository{
 
     private final JPAQueryFactory querydsl;
 
-
     @Override
-    public List<Long> findStadiumNotGame() {
-//        return querydsl.select(Projections.constructor(
-//                StadiumDTO.class
-//        )).from(stadium).where(
-//
-//        );
-        return null;
+    public List<StadiumDTO> findStadiumList() {
+        List<StadiumDTO> list = querydsl.select(
+                        Projections.constructor(
+                                StadiumDTO.class,
+                                stadium.fieldId,
+                                stadium.workStartTime,
+                                stadium.workEndTime
+                        ))
+                .from(stadium).fetch();
+        return list;
     }
 }

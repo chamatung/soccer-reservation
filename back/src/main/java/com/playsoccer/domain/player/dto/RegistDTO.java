@@ -25,25 +25,25 @@ public class RegistDTO {
     private String height;
     private String nationality;
 
-    public Player toPlayer(RegistDTO regist) {
-        return new Player().builder()
-                .email(regist.getEmail())
-                .password(regist.getPassword())
-                .name(regist.getName())
-                .birth(regist.getBirthDate())
-                .phone(regist.phoneNumber)
-                .address(regist.address)
-                .addressDetail(regist.addressDetail != null ? regist.addressDetail : "")
+    public Player toPlayer() {
+        return Player.builder()
+                .email(this.getEmail())
+                .password(this.getPassword())
+                .name(this.getName())
+                .birth(this.getBirthDate())
+                .phone(this.phoneNumber)
+                .address(this.address)
+                .addressDetail(this.addressDetail != null ? this.addressDetail : "")
                 .build();
     }
-    public PlayerInfo toPlayerInfo(RegistDTO regist) {
-        return new PlayerInfo().builder()
-                .carrer(regist.getSportExperience())
-                .position(regist.getPreferredPosition())
-                .playFoot(regist.getFoot())
-                .height(regist.getHeight())
-                .weight(regist.getWeight())
-                .nation(regist.getNationality())
+    public PlayerInfo toPlayerInfo() {
+        return PlayerInfo.builder()
+                .carrer(this.getSportExperience())
+                .position(this.getPreferredPosition())
+                .playFoot(this.getFoot())
+                .height(this.getHeight())
+                .weight(this.getWeight())
+                .nation(this.getNationality())
                 .build();
     }
 }

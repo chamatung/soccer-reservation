@@ -114,7 +114,9 @@ export default function SignUpSide() {
         .then((response) => {
           navigate("/login");
         })
-        .catch(({ response }) => {});
+        .catch(({ response }) => {
+          console.log(response);
+        });
     }
   };
 

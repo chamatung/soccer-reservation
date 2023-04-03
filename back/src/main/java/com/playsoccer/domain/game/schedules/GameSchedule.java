@@ -10,8 +10,14 @@ import org.springframework.stereotype.Component;
 public class GameSchedule {
     private final GameService gameService;
 
-    @Scheduled(cron = "0 0 03 * * *")
+//    @Scheduled(cron = "0 0 03 * * *")
+//    @Scheduled(cron = "* * * * * *")
     public void gameCreate() {
-
+        gameService.allStadiumGameCreate();
     }
+
+    //@Scheduled(cron = "0 30 1-24/2 * * *")
+//    public void changeGameAvailability() {
+//        gameService.changeGameAvailability();
+//    }
 }

@@ -148,6 +148,13 @@ const Login = inject("appStore")(
                   </Link>
                 </Grid>
               </Grid>
+              <Grid container justify='flex-end'>
+                <Grid item>
+                  <Link href='/managerRegist' variant='body2'>
+                    Manager Sign up
+                  </Link>
+                </Grid>
+              </Grid>
             </div>
           </div>
         </Grid>

@@ -8,7 +8,7 @@ import java.time.LocalDate;
 
 @Entity
 @Getter
-@Setter
+@Builder
 @NoArgsConstructor
 @AllArgsConstructor
 public class StadiumManager {
@@ -18,7 +18,7 @@ public class StadiumManager {
     private Long managerId;
 
     @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "fieldId", nullable = false)
+    @JoinColumn(name = "field_id", nullable = false)
     private Stadium stadium;
     @Column(length = 255, nullable = false)
     private String pw;
@@ -34,5 +34,10 @@ public class StadiumManager {
     private String addressDetail;
     @Column(length = 5, nullable = false)
     private String managerLevel; //주 , 부
+
+    public void setStadium(Stadium stadium) {
+        this.stadium = stadium;
+        stadium.addManager(this);
+    }
 
 }

@@ -38,9 +38,9 @@ public class QStadium extends EntityPathBase<Stadium> {
 
     public final StringPath name = createString("name");
 
-    public final DateTimePath<java.time.LocalDateTime> workEndTime = createDateTime("workEndTime", java.time.LocalDateTime.class);
+    public final StringPath workEndTime = createString("workEndTime");
 
-    public final DateTimePath<java.time.LocalDateTime> workStartTime = createDateTime("workStartTime", java.time.LocalDateTime.class);
+    public final StringPath workStartTime = createString("workStartTime");
 
     public QStadium(String variable) {
         this(Stadium.class, forVariable(variable), INITS);

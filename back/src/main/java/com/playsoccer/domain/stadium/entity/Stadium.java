@@ -7,10 +7,11 @@ import lombok.*;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.Optional;
 
 @Entity
 @Getter
-@Setter
+@Builder
 @NoArgsConstructor
 @AllArgsConstructor
 public class Stadium {
@@ -19,7 +20,7 @@ public class Stadium {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long fieldId;
     @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "areaId", nullable = false)
+    @JoinColumn(name = "area_id", nullable = false)
     private Area area;
 
     @Column(length = 100, nullable = false)
@@ -29,9 +30,9 @@ public class Stadium {
     @Column(length = 100, nullable = true)
     private String addressDetail;
     @Column(nullable = false)
-    private LocalDateTime workStartTime;
+    private String workStartTime;
     @Column(nullable = false)
-    private LocalDateTime workEndTime;
+    private String workEndTime;
     @Column(length = 15, nullable = false)
     private String fieldType;
     @Column(length = 3, nullable = false)
@@ -39,4 +40,12 @@ public class Stadium {
 
     @OneToOne(fetch = FetchType.LAZY, mappedBy = "stadium")
     private StadiumManager manager;
+
+    public void addManager(StadiumManager manager ){
+        this.manager = manager;
+    }
+
+    public void setArea(Optional<Area> area) {
+        this.area = area.get();
+    }
 }

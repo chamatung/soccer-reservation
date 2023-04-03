@@ -1,6 +1,7 @@
 package com.playsoccer.domain.player.entity;
 
 
+import com.playsoccer.domain.BaseEntity;
 import com.playsoccer.domain.gameApply.entity.GameApply;
 import com.playsoccer.domain.gameRecord.entity.GameRecord;
 import jakarta.persistence.*;

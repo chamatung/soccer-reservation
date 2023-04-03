@@ -22,17 +22,19 @@ public class QGame extends EntityPathBase<Game> {
 
     public static final QGame game = new QGame("game");
 
-    public final ListPath<com.playsoccer.domain.gameApply.entity.GameApply, com.playsoccer.domain.gameApply.entity.QGameApply> gameApplies = this.<com.playsoccer.domain.gameApply.entity.GameApply, com.playsoccer.domain.gameApply.entity.QGameApply>createList("gameApplies", com.playsoccer.domain.gameApply.entity.GameApply.class, com.playsoccer.domain.gameApply.entity.QGameApply.class, PathInits.DIRECT2);
+    public final StringPath gameAvailability = createString("gameAvailability");
 
-    public final DatePath<java.time.LocalDate> gameDate = createDate("gameDate", java.time.LocalDate.class);
+    public final StringPath gameDay = createString("gameDay");
 
     public final NumberPath<Long> gameId = createNumber("gameId", Long.class);
 
-    public final ListPath<com.playsoccer.domain.gameRecord.entity.GameRecord, com.playsoccer.domain.gameRecord.entity.QGameRecord> gameRecords = this.<com.playsoccer.domain.gameRecord.entity.GameRecord, com.playsoccer.domain.gameRecord.entity.QGameRecord>createList("gameRecords", com.playsoccer.domain.gameRecord.entity.GameRecord.class, com.playsoccer.domain.gameRecord.entity.QGameRecord.class, PathInits.DIRECT2);
+    public final StringPath gameMonth = createString("gameMonth");
+
+    public final StringPath gameYear = createString("gameYear");
 
     public final com.playsoccer.domain.stadium.entity.QStadium stadium;
 
-    public final DatePath<java.time.LocalDate> startTime = createDate("startTime", java.time.LocalDate.class);
+    public final NumberPath<Integer> startTime = createNumber("startTime", Integer.class);
 
     public final StringPath status = createString("status");
 

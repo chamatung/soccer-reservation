@@ -51,13 +51,10 @@ public class PlayerService {
     }
 
     public ResponseEntity<Map<String, String>> regist(RegistDTO regist) {
-//        MultiValueMap<String, String> header = new LinkedMultiValueMap<>();
         Map<String, String> map = new HashMap<>();
 
         if(regist == null) {
-//            header.add("msg", "회원가입 정보가 없습니다.");
             map.put("msg", "회원가입 정보가 없습니다.");
-//            return new ResponseEntity<>(header, HttpStatus.NOT_FOUND);
             return new ResponseEntity<>(map, HttpStatus.NOT_FOUND);
         }
         Player player = playerRepository.findByEmail(regist.getEmail());
@@ -66,10 +63,10 @@ public class PlayerService {
             return new ResponseEntity<>(map, HttpStatus.BAD_REQUEST);
         }
 
-        Player insertPlayer = regist.toPlayer(regist);
+        Player insertPlayer = regist.toPlayer();
         playerRepository.save(insertPlayer);
 
-        PlayerInfo insertInfo = regist.toPlayerInfo(regist);
+        PlayerInfo insertInfo = regist.toPlayerInfo();
         insertInfo.changeId(insertPlayer.getId());
         playerInfoRepository.save(insertInfo);
 
