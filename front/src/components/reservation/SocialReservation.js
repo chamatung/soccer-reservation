@@ -74,7 +74,6 @@ const SocialReservation = inject("reservationStore")(
         year: year,
       };
       reservationStore.searchGameList(dayInfo);
-      // reservationStore.changeData("currentDayInfo", dayInfo);
     };
 
     return (

@@ -14,7 +14,7 @@ import java.util.List;
 
 @RequiredArgsConstructor
 @Service
-public class GameInsertService {
+public class GameScheduleService {
 
     private final GameRepository gameRepository;
 

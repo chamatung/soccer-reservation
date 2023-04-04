@@ -11,7 +11,6 @@ class ReservationStore {
   nextDays = [];
   today = new Date();
   currentDayInfo = {};
-
   gameList = [];
 
   constructor(rootStore) {
@@ -31,6 +30,7 @@ class ReservationStore {
       nowDaysArray: action,
       nextDaysArray: action,
       searchGameList: action,
+      // gameApply: action,
     });
   }
 
@@ -161,9 +161,13 @@ class ReservationStore {
   }
 
   searchGameList(dayInfo) {
-    const apiParam = dayInfo;
+    const email = this.rootStore.appStore.email;
+    const apiParam = {
+      ...dayInfo,
+      email: email,
+    };
     apiService
-      .get("game/list", apiParam)
+      .get("games", apiParam)
       .then(({ data }) => {
         console.log(data);
         this.gameList = data;
@@ -171,6 +175,35 @@ class ReservationStore {
       .catch(({ response }) => {
         console.log(response);
       });
+  }
+
+  gameApplyAndCancel(game) {
+    const email = this.rootStore.appStore.email;
+    const apiParam = {
+      ...game,
+      email: email,
+    };
+
+    if (game.email === email) {
+      apiService
+        .post("game-apply/cancel", apiParam)
+        .then((response) => {
+          this.init();
+        })
+        .catch(({ response }) => {
+          console.log(response);
+        });
+    } else {
+      apiService
+        .post("game-apply", apiParam)
+        .then((response) => {
+          console.log(response);
+          this.init();
+        })
+        .catch(({ response }) => {
+          console.log(response);
+        });
+    }
   }
 }
 

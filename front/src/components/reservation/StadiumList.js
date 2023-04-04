@@ -23,6 +23,10 @@ const StadiumList = inject("reservationStore")(
     const { gameList } = reservationStore;
     console.log(gameList);
 
+    const gameApplyAndCancel = (game) => {
+      reservationStore.gameApplyAndCancel(game);
+    };
+
     return (
       <TableContainer component={Paper}>
         <Table className={classes.table} aria-label='list'>
@@ -41,8 +45,24 @@ const StadiumList = inject("reservationStore")(
                     : game.gameApplyCnt + "/" + game.totalMember}
                 </TableCell>
                 <TableCell align='center'>
-                  <Button style={{ backgroundColor: "red", color: "white" }}>
-                    {game.status}
+                  <Button
+                    style={{
+                      backgroundColor: game.email
+                        ? "blue"
+                        : game.gameApplyCnt > 1
+                        ? "red"
+                        : "green",
+                      color: "white",
+                    }}
+                    onClick={() => {
+                      gameApplyAndCancel(game);
+                    }}
+                  >
+                    {game.email
+                      ? "신청완료"
+                      : game.status === "모집중" && game.gameApplyCnt > 1
+                      ? "마감전"
+                      : game.status}
                   </Button>
                 </TableCell>
               </TableRow>

@@ -1,18 +1,16 @@
-package com.playsoccer.domain.game.dto;
+package com.playsoccer.domain.gameApply.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 
-import java.time.LocalDate;
-
 @AllArgsConstructor
 @Builder
 @Data
-public class GameDTO {
+public class GameApplyDTO {
     private Long gameId;
     private Long fieldId;
-    private Integer totalMember; //풋살밖에 안됌 대경기는 아예 구자예약을 하는 다른 시스템으로 만들것
+    private Integer totalMember;
     private String gameDay;
     private Integer startTime;
     private String status;
@@ -22,6 +20,5 @@ public class GameDTO {
     private String name;
     private Long gameApplyCnt;
     private String email;
+
 }
-
-

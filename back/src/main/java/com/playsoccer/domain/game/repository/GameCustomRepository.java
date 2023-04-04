@@ -9,7 +9,7 @@ public interface GameCustomRepository {
 
     void insertGameList(List<GameDTO> gameList);
 
-    List<GameDTO> findGameList(String day, String month, String year);
+    List<GameDTO> findGameList(String day, String month, String year, Long playerId);
 
     void changeGameAvailability(String nowDay, String nowMonth, String nowYear, int nowTime);
 }

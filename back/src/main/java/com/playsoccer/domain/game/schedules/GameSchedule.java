@@ -10,12 +10,14 @@ import org.springframework.stereotype.Component;
 public class GameSchedule {
     private final GameService gameService;
 
+    //게임 대량등록
 //    @Scheduled(cron = "0 0 03 * * *")
 //    @Scheduled(cron = "* * * * * *")
     public void gameCreate() {
         gameService.allStadiumGameCreate();
     }
 
+    //지난 게임 숨김처리
     //@Scheduled(cron = "0 30 1-24/2 * * *")
 //    public void changeGameAvailability() {
 //        gameService.changeGameAvailability();

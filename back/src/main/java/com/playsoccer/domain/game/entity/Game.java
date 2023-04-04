@@ -12,7 +12,6 @@ import java.util.List;
 
 @Entity
 @Getter
-@Setter
 @NoArgsConstructor
 @AllArgsConstructor
 public class Game {
@@ -46,5 +45,8 @@ public class Game {
 //
 //    @OneToMany(mappedBy = "game")
 //    private List<GameRecord> gameRecords = new ArrayList<>();
+    public void changeStatus(String status) {
+        this.status = status;
+    }
 
 }

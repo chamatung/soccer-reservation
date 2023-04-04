@@ -19,7 +19,6 @@ import static com.playsoccer.domain.stadium.entity.QStadium.stadium;
 
 @RequiredArgsConstructor
 public class GameCustomRepositoryImpl implements GameCustomRepository{
-
     private final JPAQueryFactory querydsl;
     private final JdbcTemplate jdbcTemplate;
 
@@ -63,10 +62,12 @@ public class GameCustomRepositoryImpl implements GameCustomRepository{
     }
 
     @Override
-    public List<GameDTO> findGameList(String day, String month, String year) {
+    public List<GameDTO> findGameList(String day, String month, String year, Long playerId) {
+
 
         return querydsl.select(Projections.constructor(
                 GameDTO.class,
+                game.gameId,
                 game.stadium.fieldId,
                 game.totalMember,
                 game.gameDay,
@@ -80,7 +81,13 @@ public class GameCustomRepositoryImpl implements GameCustomRepository{
                         JPAExpressions.select(gameApply.count())
                                 .from(gameApply)
                                 .where(gameApply.game.gameId.eq(game.gameId)),
-                        "gameApplyCnt")
+                        "gameApplyCnt"),
+                ExpressionUtils.as(
+                        JPAExpressions.select(gameApply.player.email)
+                                .from(gameApply)
+                                .where(game.gameId.eq(gameApply.game.gameId).and(gameApply.player.id.eq(playerId))),
+                        "email"
+                )
         )).from(game)
                 .innerJoin(stadium)
                 .on(game.stadium.fieldId.eq(stadium.fieldId))
@@ -91,6 +98,7 @@ public class GameCustomRepositoryImpl implements GameCustomRepository{
                 .orderBy(game.startTime.asc(), stadium.name.asc())
                 .fetch();
     }
+
 
     @Override
     public void changeGameAvailability(String nowDay, String nowMonth, String nowYear, int nowTime) {

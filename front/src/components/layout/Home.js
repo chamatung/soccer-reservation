@@ -31,7 +31,7 @@ const useStyles = makeStyles((theme) => ({
 const Home = inject("homeStore")(
   observer(({ homeStore }) => {
     const classes = useStyles();
-    const { email, name } = homeStore.player;
+    const { name } = homeStore.player;
 
     const handleLogout = () => {
       homeStore.handleLogout();
@@ -49,7 +49,12 @@ const Home = inject("homeStore")(
               Soccer Play
             </Typography>
             <Typography>{name} 님</Typography>
-            <Button color='inherit' onClick={handleLogout}>
+            <Button
+              color='inherit'
+              onClick={() => {
+                handleLogout();
+              }}
+            >
               Logout
             </Button>
           </Toolbar>

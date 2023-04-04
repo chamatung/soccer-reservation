@@ -10,7 +10,7 @@ import static jakarta.servlet.DispatcherType.REQUEST;
 
 @Configuration
 @EnableWebSecurity
-public class securityConfig {
+public class securityConfig{
 
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {

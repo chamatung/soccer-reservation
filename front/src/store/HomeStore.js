@@ -3,9 +3,7 @@ import { action, makeObservable } from "mobx";
 class HomeStore {
   constructor(rootStore) {
     this.rootStore = rootStore;
-    makeObservable(this, {
-      handleLogout: action,
-    });
+    makeObservable(this, {});
   }
 
   handleLogout() {

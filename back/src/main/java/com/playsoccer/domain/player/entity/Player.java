@@ -49,5 +49,4 @@ public class Player {
     @OneToMany(mappedBy = "player")
     private List<GameRecord> gameRecords = new ArrayList<>();
 
-
 }

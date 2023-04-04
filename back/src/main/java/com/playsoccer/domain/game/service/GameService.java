@@ -1,8 +1,11 @@
 package com.playsoccer.domain.game.service;
 
 import com.playsoccer.domain.game.dto.GameDTO;
-import com.playsoccer.domain.game.entity.Game;
 import com.playsoccer.domain.game.repository.GameRepository;
+import com.playsoccer.domain.gameApply.entity.GameApply;
+import com.playsoccer.domain.gameApply.repository.GameApplyRepository;
+import com.playsoccer.domain.player.entity.Player;
+import com.playsoccer.domain.player.repository.PlayerRepository;
 import com.playsoccer.domain.stadium.dto.StadiumDTO;
 import com.playsoccer.domain.stadium.repository.StadiumRepository;
 import jakarta.transaction.Transactional;
@@ -15,13 +18,16 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @RequiredArgsConstructor
 @Service
 public class GameService {
     private final GameRepository gameRepository;
     private final StadiumRepository stadiumRepository;
-    private final GameInsertService gameInsertService;
+    private final GameScheduleService gameInsertService;
+    private final PlayerRepository playerRepository;
+    private final GameApplyRepository gameApplyRepository;
 
     //스케줄러용 구장 경기생성
     @Transactional
@@ -49,7 +55,7 @@ public class GameService {
 
         List<StadiumDTO> stadiumList = stadiumRepository.findStadiumList(); // 전체리스트
         List<Long> gameStadiumList = gameRepository.findStadiumGame(nowYear,nowMonth); //이번달 등록된 게임구장 리스트
-        List<Long> nextGameStadiumList = gameRepository.findStadiumGame(nextYear,nextMonth); //다음달 등록돈 게임구장 리스트
+        List<Long> nextGameStadiumList = gameRepository.findStadiumGame(nextYear,nextMonth); //다음달 등록된 게임구장 리스트
 
         List<StadiumDTO> createGameStadiumList = createGameStadium(stadiumList, gameStadiumList);//이번달 생성 구장리스트
         List<StadiumDTO> createNextGameStadiumList = createGameStadium(stadiumList, nextGameStadiumList);//다음달 생성 구장리스트
@@ -69,6 +75,7 @@ public class GameService {
     }
     //관리자 회원가입 또는 관리자 변경시 게임생성 구장리스트 (단, 게임이 없는 경우)
     private ArrayList<StadiumDTO> createGameStadium(List<StadiumDTO> stadiumList, List<Long> gameStadiumList) {
+
         ArrayList<StadiumDTO> list = new ArrayList<>();
         for(StadiumDTO stadium : stadiumList) {
             int cnt = 0;
@@ -94,16 +101,20 @@ public class GameService {
     }
 
     @Transactional
-    public List<GameDTO> findGameList(String day, String month, String year) {
-//        List<Game> list = gameRepository.findByGameDayAndGameMonthAndGameYear(day,month,year);
-        changeGameAvailability();
-        List<GameDTO> list = gameRepository.findGameList(day,month,year);
+    public List<GameDTO> findGameList(String day, String month, String year, String email) {
 
+        changeGameAvailability(); //현재 시간 기준 이전 게임들 숨김처리
+
+        Player player = playerRepository.findByEmail(email);
+
+        Long playerId = player.getId();
+
+        List<GameDTO> list = gameRepository.findGameList(day,month,year,playerId);
 
         return list;
     }
 
-    public void changeGameAvailability() {
+    private void changeGameAvailability() {
 
         LocalDateTime now = LocalDateTime.now();
 
@@ -115,4 +126,5 @@ public class GameService {
 
         gameRepository.changeGameAvailability(nowDay, nowMonth, nowYear, nowTime);
     }
+
 }
