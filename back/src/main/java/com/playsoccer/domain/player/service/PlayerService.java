@@ -34,7 +34,6 @@ public class PlayerService {
         }
         //orElseThrow 쓸 것
         Optional<Player> player = Optional.ofNullable(playerRepository.findByEmail(login.getEmail()));
-
         if(player.isPresent()) {
             if(StringUtils.equals(player.get().getEmail(),login.getEmail())) {
                 if(StringUtils.equals(player.get().getPassword(),login.getEmail())) {

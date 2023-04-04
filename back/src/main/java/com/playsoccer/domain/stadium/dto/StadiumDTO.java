@@ -7,7 +7,6 @@ import lombok.Data;
 @AllArgsConstructor
 public class StadiumDTO {
     private Long fieldId;
-
     private String workStartTime;
     private String workEndTime;
 

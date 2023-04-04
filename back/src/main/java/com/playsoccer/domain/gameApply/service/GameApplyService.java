@@ -45,7 +45,7 @@ public class GameApplyService {
                     .stadium(stadium.get())
                     .build();
 
-            GameApply gameAppy = gameApplyRepository.save(insertGameApply);
+            gameApplyRepository.save(insertGameApply);
 
             int cnt = gameApplyRepository.countByGame(game.get());
             if(cnt == 18) {

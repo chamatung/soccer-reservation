@@ -99,7 +99,34 @@ public class GameCustomRepositoryImpl implements GameCustomRepository{
                 .fetch();
     }
 
+/*
+* lt < little
 
+loe <= Less or Equal
+
+gt > greater
+
+goe >= greater or Equal
+
+eq == Equal
+
+jpql 검색조건방식 차이
+member.username.eq("a") : username = 'a'
+member.username.ne("a") : username ≠ 'a'
+member.username.eq("a").not() : username ≠ 'a'
+member.username.isNotNull() : username is not null
+member.age.in(10,20) : age in (10,20)
+member.age.notIn(10,20) : age not in(10,20)
+member.age.between(10,30) : age between 10, 30
+member.age.goe(30) : age ≥ 30
+member.age.gt(30) : age > 30
+member.age.loe(30) : age ≤ 30
+member.age.lt(30) : age < 30
+member.username.like("member%") : username like 'member%'
+member.username.contains("member') : username like '%member%'
+member.username.startsWith("member") : like 'member%'
+
+* */
     @Override
     public void changeGameAvailability(String nowDay, String nowMonth, String nowYear, int nowTime) {
         querydsl.update(game).set(game.gameAvailability, "불가능")

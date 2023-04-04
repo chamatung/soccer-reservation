@@ -36,7 +36,7 @@ class ReservationStore {
 
   init() {
     this.dateCalculation();
-    this.searchGameList(this.currentDayInfo);
+    this.searchGameList();
   }
 
   //다음달은 30일- 이번달 나온 일수로만 하기 2월 포함하는 경우는 28일까지만 윤년의 경우도 체크할 것
@@ -160,8 +160,9 @@ class ReservationStore {
     this[key] = value;
   }
 
-  searchGameList(dayInfo) {
+  searchGameList() {
     const email = this.rootStore.appStore.email;
+    const dayInfo = this.currentDayInfo;
     const apiParam = {
       ...dayInfo,
       email: email,
@@ -188,7 +189,7 @@ class ReservationStore {
       apiService
         .post("game-apply/cancel", apiParam)
         .then((response) => {
-          this.init();
+          this.searchGameList();
         })
         .catch(({ response }) => {
           console.log(response);
@@ -198,7 +199,7 @@ class ReservationStore {
         .post("game-apply", apiParam)
         .then((response) => {
           console.log(response);
-          this.init();
+          this.searchGameList();
         })
         .catch(({ response }) => {
           console.log(response);

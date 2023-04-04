@@ -73,7 +73,8 @@ const SocialReservation = inject("reservationStore")(
         month: month,
         year: year,
       };
-      reservationStore.searchGameList(dayInfo);
+      reservationStore.changeData("currentDayInfo", dayInfo);
+      reservationStore.searchGameList();
     };
 
     return (
