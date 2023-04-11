@@ -2,6 +2,7 @@ import { action, makeObservable, observable } from "mobx";
 
 class AppStore {
   loginCheck = false;
+  managerCheck = false;
   email = "";
   name = "";
 
@@ -22,7 +23,10 @@ class AppStore {
     this[key] = value;
   }
 
-  loginCheckChange(check) {
+  loginCheckChange(check, managerCheck = false) {
+    if (managerCheck === true) {
+      this.managerCheck = true;
+    }
     this.loginCheck = check;
   }
 

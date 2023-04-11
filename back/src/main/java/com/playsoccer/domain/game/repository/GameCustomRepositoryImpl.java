@@ -6,6 +6,7 @@ import com.querydsl.core.types.Projections;
 import com.querydsl.jpa.JPAExpressions;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.jdbc.core.BatchPreparedStatementSetter;
 import org.springframework.jdbc.core.JdbcTemplate;
 
@@ -34,6 +35,16 @@ public class GameCustomRepositoryImpl implements GameCustomRepository{
 
         return gameStadiumList;
     }
+
+    /* 배치 사용이유
+
+    첫번째) saveAll -> insert into 테이블(컬럼1, 2, 3~8)  valuse(값1, 값2~값8)
+          SQL 1000번 실행
+
+    두번째) jdbcTemplate batch -> insert into 테이블(컬럼1, 2, 3~8)  valuse(값1, 값2~값8) (값1, 값2~값8)
+                            (값1, 값2~값8)..* 1000개
+            SQL 1000개를 묶어서 1번 실행
+    * */
     @Override
     public void insertGameList(List<GameDTO> gameList) {
         final String sql =
@@ -64,7 +75,6 @@ public class GameCustomRepositoryImpl implements GameCustomRepository{
     @Override
     public List<GameDTO> findGameList(String day, String month, String year, Long playerId) {
 
-
         return querydsl.select(Projections.constructor(
                 GameDTO.class,
                 game.gameId,
@@ -94,7 +104,10 @@ public class GameCustomRepositoryImpl implements GameCustomRepository{
                 .where(game.gameDay.eq(day)
                         .and(game.gameMonth.eq(month))
                         .and(game.gameYear.eq(year))
-                        .and(game.gameAvailability.eq("가능")))
+                        .and(game.gameAvailability.eq("가능"))
+                        .and(game.status.notIn("마감"))
+                )
+
                 .orderBy(game.startTime.asc(), stadium.name.asc())
                 .fetch();
     }

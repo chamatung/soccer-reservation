@@ -30,13 +30,6 @@ function MenuBar() {
           <Button component={Link} to='/' className={classes.link}>
             소셜예약
           </Button>
-          <Button
-            component={Link}
-            to='/stadium-reservation'
-            className={classes.link}
-          >
-            구장예약
-          </Button>
           <Button component={Link} to='/my-info' className={classes.link}>
             내 정보
           </Button>

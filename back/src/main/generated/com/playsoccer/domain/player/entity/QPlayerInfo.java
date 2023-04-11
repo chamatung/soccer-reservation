@@ -28,6 +28,8 @@ public class QPlayerInfo extends EntityPathBase<PlayerInfo> {
 
     public final NumberPath<Long> id = createNumber("id", Long.class);
 
+    public final StringPath level = createString("level");
+
     public final StringPath nation = createString("nation");
 
     public final QPlayer player;

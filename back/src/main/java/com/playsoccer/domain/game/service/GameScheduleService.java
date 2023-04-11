@@ -19,8 +19,8 @@ public class GameScheduleService {
     private final GameRepository gameRepository;
 
     @Transactional
-    public void stadiumListGameInsert(String year, String month,int day, StadiumDTO stadium) {
-        int[] time = {0,2,4,6,8,10,12,14,16,18,20,22,24};
+    public List<GameDTO> stadiumListGameInsert(String year, String month,int day, StadiumDTO stadium) {
+        String[] time = {"0","2","4","6","8","10","12","14","16","18","20","22","24"};
         List<GameDTO> gameList = new ArrayList<>();
 
         LocalDate days = LocalDate.of(Integer.valueOf(year), Integer.valueOf(month),1);
@@ -36,7 +36,7 @@ public class GameScheduleService {
                         .fieldId(stadium.getFieldId())
                         .totalMember(18)
                         .gameDay(String.valueOf(i))
-                        .startTime(time[j])
+                        .startTime(Integer.parseInt(time[j]))
                         .status("모집중")
                         .gameYear(year)
                         .gameMonth(month)
@@ -46,6 +46,8 @@ public class GameScheduleService {
                 gameList.add(game);
             }
         }
-        gameRepository.insertGameList(gameList);
+
+        //gameRepository.insertGameList(gameList);
+        return gameList;
     }
 }

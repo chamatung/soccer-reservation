@@ -886,7 +886,7 @@ sys|schema||mysql.sys|localhost|TRIGGER|G</Grants>
       <UnderlyingIndexName>PRIMARY</UnderlyingIndexName>
     </key>
     <column id="252" parent="236" name="game_id">
-      <AutoIncrement>1863</AutoIncrement>
+      <AutoIncrement>7358</AutoIncrement>
       <DasType>bigint(20)|0s</DasType>
       <NotNull>1</NotNull>
       <Position>1</Position>
@@ -949,7 +949,7 @@ sys|schema||mysql.sys|localhost|TRIGGER|G</Grants>
       <UnderlyingIndexName>PRIMARY</UnderlyingIndexName>
     </key>
     <column id="265" parent="237" name="game_apply_id">
-      <AutoIncrement>4</AutoIncrement>
+      <AutoIncrement>39</AutoIncrement>
       <DasType>bigint(20)|0s</DasType>
       <NotNull>1</NotNull>
       <Position>1</Position>
@@ -1150,7 +1150,7 @@ sys|schema||mysql.sys|localhost|TRIGGER|G</Grants>
       <UnderlyingIndexName>PRIMARY</UnderlyingIndexName>
     </key>
     <column id="306" parent="241" name="id">
-      <AutoIncrement>2</AutoIncrement>
+      <AutoIncrement>7</AutoIncrement>
       <DasType>bigint(20)|0s</DasType>
       <NotNull>1</NotNull>
       <Position>1</Position>
@@ -1272,176 +1272,180 @@ sys|schema||mysql.sys|localhost|TRIGGER|G</Grants>
       <NotNull>1</NotNull>
       <Position>7</Position>
     </column>
-    <index id="331" parent="243" name="PRIMARY">
+    <column id="331" parent="243" name="level">
+      <DasType>varchar(15)|0s</DasType>
+      <Position>8</Position>
+    </column>
+    <index id="332" parent="243" name="PRIMARY">
       <ColNames>id</ColNames>
       <Type>btree</Type>
       <Unique>1</Unique>
     </index>
-    <key id="332" parent="243" name="PRIMARY">
+    <key id="333" parent="243" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <Primary>1</Primary>
       <UnderlyingIndexName>PRIMARY</UnderlyingIndexName>
     </key>
-    <column id="333" parent="244" name="account_number">
+    <column id="334" parent="244" name="account_number">
       <DasType>varchar(20)|0s</DasType>
       <Position>1</Position>
     </column>
-    <column id="334" parent="244" name="bank_name">
+    <column id="335" parent="244" name="bank_name">
       <DasType>varchar(20)|0s</DasType>
       <Position>2</Position>
     </column>
-    <column id="335" parent="244" name="card_number">
+    <column id="336" parent="244" name="card_number">
       <DasType>varchar(20)|0s</DasType>
       <Position>3</Position>
     </column>
-    <column id="336" parent="244" name="card_type">
+    <column id="337" parent="244" name="card_type">
       <DasType>varchar(110)|0s</DasType>
       <Position>4</Position>
     </column>
-    <column id="337" parent="244" name="id">
+    <column id="338" parent="244" name="id">
       <DasType>bigint(20)|0s</DasType>
       <NotNull>1</NotNull>
       <Position>5</Position>
     </column>
-    <foreign-key id="338" parent="244" name="FK3megakerdj8l70ek5e1ch4abh">
+    <foreign-key id="339" parent="244" name="FK3megakerdj8l70ek5e1ch4abh">
       <ColNames>id</ColNames>
       <RefColNames>id</RefColNames>
       <RefTableName>player</RefTableName>
     </foreign-key>
-    <index id="339" parent="244" name="PRIMARY">
+    <index id="340" parent="244" name="PRIMARY">
       <ColNames>id</ColNames>
       <Type>btree</Type>
       <Unique>1</Unique>
     </index>
-    <key id="340" parent="244" name="PRIMARY">
+    <key id="341" parent="244" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <Primary>1</Primary>
       <UnderlyingIndexName>PRIMARY</UnderlyingIndexName>
     </key>
-    <column id="341" parent="245" name="field_id">
+    <column id="342" parent="245" name="field_id">
       <AutoIncrement>13</AutoIncrement>
       <DasType>bigint(20)|0s</DasType>
       <NotNull>1</NotNull>
       <Position>1</Position>
     </column>
-    <column id="342" parent="245" name="address">
+    <column id="343" parent="245" name="address">
       <DasType>varchar(255)|0s</DasType>
       <NotNull>1</NotNull>
       <Position>2</Position>
     </column>
-    <column id="343" parent="245" name="address_detail">
+    <column id="344" parent="245" name="address_detail">
       <DasType>varchar(100)|0s</DasType>
       <Position>3</Position>
     </column>
-    <column id="344" parent="245" name="field_type">
+    <column id="345" parent="245" name="field_type">
       <DasType>varchar(15)|0s</DasType>
       <NotNull>1</NotNull>
       <Position>4</Position>
     </column>
-    <column id="345" parent="245" name="indoor_status">
+    <column id="346" parent="245" name="indoor_status">
       <DasType>varchar(3)|0s</DasType>
       <NotNull>1</NotNull>
       <Position>5</Position>
     </column>
-    <column id="346" parent="245" name="name">
+    <column id="347" parent="245" name="name">
       <DasType>varchar(100)|0s</DasType>
       <NotNull>1</NotNull>
       <Position>6</Position>
     </column>
-    <column id="347" parent="245" name="work_end_time">
+    <column id="348" parent="245" name="work_end_time">
       <DasType>varchar(255)|0s</DasType>
       <NotNull>1</NotNull>
       <Position>7</Position>
     </column>
-    <column id="348" parent="245" name="work_start_time">
+    <column id="349" parent="245" name="work_start_time">
       <DasType>varchar(255)|0s</DasType>
       <NotNull>1</NotNull>
       <Position>8</Position>
     </column>
-    <column id="349" parent="245" name="area_id">
+    <column id="350" parent="245" name="area_id">
       <DasType>bigint(20)|0s</DasType>
       <NotNull>1</NotNull>
       <Position>9</Position>
     </column>
-    <foreign-key id="350" parent="245" name="FKqwq8u09pfmn8d8mrb15aj8xqb">
+    <foreign-key id="351" parent="245" name="FKqwq8u09pfmn8d8mrb15aj8xqb">
       <ColNames>area_id</ColNames>
       <RefColNames>area_id</RefColNames>
       <RefTableName>area</RefTableName>
     </foreign-key>
-    <index id="351" parent="245" name="PRIMARY">
+    <index id="352" parent="245" name="PRIMARY">
       <ColNames>field_id</ColNames>
       <Type>btree</Type>
       <Unique>1</Unique>
     </index>
-    <index id="352" parent="245" name="FKqwq8u09pfmn8d8mrb15aj8xqb">
+    <index id="353" parent="245" name="FKqwq8u09pfmn8d8mrb15aj8xqb">
       <ColNames>area_id</ColNames>
       <Type>btree</Type>
     </index>
-    <key id="353" parent="245" name="PRIMARY">
+    <key id="354" parent="245" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <Primary>1</Primary>
       <UnderlyingIndexName>PRIMARY</UnderlyingIndexName>
     </key>
-    <column id="354" parent="246" name="manager_id">
+    <column id="355" parent="246" name="manager_id">
       <AutoIncrement>10</AutoIncrement>
       <DasType>bigint(20)|0s</DasType>
       <NotNull>1</NotNull>
       <Position>1</Position>
     </column>
-    <column id="355" parent="246" name="address">
+    <column id="356" parent="246" name="address">
       <DasType>varchar(255)|0s</DasType>
       <NotNull>1</NotNull>
       <Position>2</Position>
     </column>
-    <column id="356" parent="246" name="address_detail">
+    <column id="357" parent="246" name="address_detail">
       <DasType>varchar(100)|0s</DasType>
       <Position>3</Position>
     </column>
-    <column id="357" parent="246" name="email">
+    <column id="358" parent="246" name="email">
       <DasType>varchar(100)|0s</DasType>
       <NotNull>1</NotNull>
       <Position>4</Position>
     </column>
-    <column id="358" parent="246" name="manager_level">
+    <column id="359" parent="246" name="manager_level">
       <DasType>varchar(5)|0s</DasType>
       <NotNull>1</NotNull>
       <Position>5</Position>
     </column>
-    <column id="359" parent="246" name="name">
+    <column id="360" parent="246" name="name">
       <DasType>varchar(20)|0s</DasType>
       <NotNull>1</NotNull>
       <Position>6</Position>
     </column>
-    <column id="360" parent="246" name="phone">
+    <column id="361" parent="246" name="phone">
       <DasType>varchar(11)|0s</DasType>
       <NotNull>1</NotNull>
       <Position>7</Position>
     </column>
-    <column id="361" parent="246" name="pw">
+    <column id="362" parent="246" name="pw">
       <DasType>varchar(255)|0s</DasType>
       <NotNull>1</NotNull>
       <Position>8</Position>
     </column>
-    <column id="362" parent="246" name="field_id">
+    <column id="363" parent="246" name="field_id">
       <DasType>bigint(20)|0s</DasType>
       <NotNull>1</NotNull>
       <Position>9</Position>
     </column>
-    <foreign-key id="363" parent="246" name="FKey0xr8fe429gmlcluy0kphhij">
+    <foreign-key id="364" parent="246" name="FKey0xr8fe429gmlcluy0kphhij">
       <ColNames>field_id</ColNames>
       <RefColNames>field_id</RefColNames>
       <RefTableName>stadium</RefTableName>
     </foreign-key>
-    <index id="364" parent="246" name="PRIMARY">
+    <index id="365" parent="246" name="PRIMARY">
       <ColNames>manager_id</ColNames>
       <Type>btree</Type>
       <Unique>1</Unique>
     </index>
-    <index id="365" parent="246" name="FKey0xr8fe429gmlcluy0kphhij">
+    <index id="366" parent="246" name="FKey0xr8fe429gmlcluy0kphhij">
       <ColNames>field_id</ColNames>
       <Type>btree</Type>
     </index>
-    <key id="366" parent="246" name="PRIMARY">
+    <key id="367" parent="246" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <Primary>1</Primary>
       <UnderlyingIndexName>PRIMARY</UnderlyingIndexName>

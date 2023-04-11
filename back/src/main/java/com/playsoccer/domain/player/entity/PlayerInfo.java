@@ -16,8 +16,10 @@ public class PlayerInfo {
 
     @Id
     private Long id;
+    @Column(length = 15, nullable = true)
+    private String level;
     @Column(nullable = false)
-    private int carrer;
+    private Integer carrer;
     @Column(length = 15, nullable = false)
     private String position;
     @Column(length = 10, nullable = false)
@@ -28,7 +30,6 @@ public class PlayerInfo {
     private String height;
     @Column(length = 30, nullable = false)
     private String nation;
-
     @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id")
     private Player player; //선수

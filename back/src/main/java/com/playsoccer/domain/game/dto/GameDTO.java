@@ -1,5 +1,6 @@
 package com.playsoccer.domain.game.dto;
 
+import com.playsoccer.domain.stadium.entity.Stadium;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -22,6 +23,8 @@ public class GameDTO {
     private String name;
     private Long gameApplyCnt;
     private String email;
+
+
 }
 
 

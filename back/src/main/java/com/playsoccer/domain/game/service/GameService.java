@@ -1,12 +1,13 @@
 package com.playsoccer.domain.game.service;
 
+import com.playsoccer.domain.game.dto.DateDTO;
 import com.playsoccer.domain.game.dto.GameDTO;
 import com.playsoccer.domain.game.repository.GameRepository;
-import com.playsoccer.domain.gameApply.entity.GameApply;
 import com.playsoccer.domain.gameApply.repository.GameApplyRepository;
 import com.playsoccer.domain.player.entity.Player;
 import com.playsoccer.domain.player.repository.PlayerRepository;
 import com.playsoccer.domain.stadium.dto.StadiumDTO;
+import com.playsoccer.domain.stadium.entity.Stadium;
 import com.playsoccer.domain.stadium.repository.StadiumRepository;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
@@ -18,7 +19,6 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 @RequiredArgsConstructor
 @Service
@@ -27,7 +27,6 @@ public class GameService {
     private final StadiumRepository stadiumRepository;
     private final GameScheduleService gameInsertService;
     private final PlayerRepository playerRepository;
-    private final GameApplyRepository gameApplyRepository;
 
     //스케줄러용 구장 경기생성
     @Transactional
@@ -37,44 +36,44 @@ public class GameService {
         * 2. 구장기준 game table where year and month 리스트 가져오기
         * -> createGameStadium메소드를 통해 1번리스트 기준으로 2번 list에 해당하지 않는 구장정보 return
         * 3. 이번달, 다음달 createList 영업시간 기준 전체 추가
-        * 4. 스케줄은 약 1개월 마다 진행하면 될 듯
+        * 4. 스케줄은 약 1개월 마다 진행
         */
-        LocalDate now = LocalDate.now();
-        String nowYear = String.valueOf(now.getYear());
-        String nowMonth = String.valueOf(now.getMonthValue());
-        String nextYear = nowYear;
-        String nextMonth = String.valueOf(now.getMonthValue() + 1);
 
-        int nowDay = now.getDayOfMonth();
-
-        //이번달 12월인 경우 다음달 년도와 달 변경
-        if(StringUtils.equals("12", nowMonth)) {
-            nextYear = String.valueOf(now.getYear() +1);
-            nextMonth = "01";
-        }
+        DateDTO date = new DateDTO();
 
         List<StadiumDTO> stadiumList = stadiumRepository.findStadiumList(); // 전체리스트
-        List<Long> gameStadiumList = gameRepository.findStadiumGame(nowYear,nowMonth); //이번달 등록된 게임구장 리스트
-        List<Long> nextGameStadiumList = gameRepository.findStadiumGame(nextYear,nextMonth); //다음달 등록된 게임구장 리스트
+        List<Long> gameStadiumList = gameRepository.findStadiumGame(date.getNowYear(),date.getNowMonth()); //이번달 등록된 게임구장 리스트
+        List<Long> nextGameStadiumList = gameRepository.findStadiumGame(date.getNextYear(),date.getNextMonth()); //다음달 등록된 게임구장 리스트
 
-        List<StadiumDTO> createGameStadiumList = createGameStadium(stadiumList, gameStadiumList);//이번달 생성 구장리스트
-        List<StadiumDTO> createNextGameStadiumList = createGameStadium(stadiumList, nextGameStadiumList);//다음달 생성 구장리스트
+        List<StadiumDTO> createGameList = checkStadiumList(stadiumList, gameStadiumList);//이번달 생성 구장리스트
+        List<StadiumDTO> createNextGameList = checkStadiumList(stadiumList, nextGameStadiumList);//다음달 생성 구장리스트
+
+        List<GameDTO> gameList = sumGameList(createGameList,createNextGameList, date);
+
+        gameRepository.insertGameList(gameList);
+    }
+
+    private List<GameDTO> sumGameList(List<StadiumDTO> gameList, List<StadiumDTO> nextGameList, DateDTO date) {
+        List<GameDTO> createGameList = new ArrayList<>();
 
         //이번달 구장 경기생성
-        if(!CollectionUtils.isEmpty(createGameStadiumList)){
-            for(StadiumDTO stadium: createGameStadiumList) {
-                gameInsertService.stadiumListGameInsert(nowYear,nowMonth,nowDay,stadium);
+        if(!CollectionUtils.isEmpty(gameList)){
+            for(StadiumDTO stadium: gameList) {
+                createGameList.addAll(gameInsertService.stadiumListGameInsert(date.getNowYear(),date.getNowMonth(),date.getNowDay(),stadium));
             }
         }
         //다음달 구장 경기생성
-        if(!CollectionUtils.isEmpty(createNextGameStadiumList)){
-            for(StadiumDTO stadium: createNextGameStadiumList) {
-                gameInsertService.stadiumListGameInsert(nextYear,nextMonth,1,stadium);
+        if(!CollectionUtils.isEmpty(nextGameList)){
+            for(StadiumDTO stadium: nextGameList) {
+                createGameList.addAll(gameInsertService.stadiumListGameInsert(date.getNextYear(),date.getNextMonth(),1,stadium));
             }
         }
+
+        return createGameList;
     }
+
     //관리자 회원가입 또는 관리자 변경시 게임생성 구장리스트 (단, 게임이 없는 경우)
-    private ArrayList<StadiumDTO> createGameStadium(List<StadiumDTO> stadiumList, List<Long> gameStadiumList) {
+    private ArrayList<StadiumDTO> checkStadiumList(List<StadiumDTO> stadiumList, List<Long> gameStadiumList) {
 
         ArrayList<StadiumDTO> list = new ArrayList<>();
         for(StadiumDTO stadium : stadiumList) {
@@ -93,20 +92,28 @@ public class GameService {
         return list;
     }
 
-    public void stadiumGameCreate(String a) {
+    public void createGameStadiumOne(Stadium stadium) {
         /*
         * 1.구장등록 시  게임 추가
         * 2. 금일기준부터 다음달 말일까지
         * */
+        List<GameDTO> createGameList = new ArrayList<>();
+
+        DateDTO date = new DateDTO();
+        StadiumDTO stadiumDto = StadiumDTO.from(stadium);
+
+        createGameList.addAll(gameInsertService.stadiumListGameInsert(date.getNowYear(),date.getNowMonth(),date.getNowDay(),stadiumDto)); //이번달
+        createGameList.addAll(gameInsertService.stadiumListGameInsert(date.getNextYear(),date.getNextMonth(),1,stadiumDto)); //다음달
+
+        gameRepository.insertGameList(createGameList);
     }
 
     @Transactional
     public List<GameDTO> findGameList(String day, String month, String year, String email) {
-
+//        allStadiumGameCreate();
         changeGameAvailability(); //현재 시간 기준 이전 게임들 숨김처리
 
         Player player = playerRepository.findByEmail(email);
-
         Long playerId = player.getId();
 
         List<GameDTO> list = gameRepository.findGameList(day,month,year,playerId);

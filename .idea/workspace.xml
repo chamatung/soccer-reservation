@@ -4,14 +4,31 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="8e3ac3a9-780a-4eb1-ba41-5057e9a8d051" name="Changes" comment="소셜경기리스트 신청 및 신청취소">
+    <list default="true" id="8e3ac3a9-780a-4eb1-ba41-5057e9a8d051" name="Changes" comment="다른날 신청 시 금일날짜 리스트 조회버그 수정">
+      <change afterPath="$PROJECT_DIR$/back/src/main/java/com/playsoccer/domain/game/dto/DateDTO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/back/src/main/java/com/playsoccer/domain/player/dto/PlayerInfoDTO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/372b8461-4bd4-4039-a53d-7ba5ba95ef95.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/372b8461-4bd4-4039-a53d-7ba5ba95ef95.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/back/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/back/build.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/back/src/main/generated/com/playsoccer/domain/player/entity/QPlayerInfo.java" beforeDir="false" afterPath="$PROJECT_DIR$/back/src/main/generated/com/playsoccer/domain/player/entity/QPlayerInfo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/back/src/main/java/com/playsoccer/PlaySoccerApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/back/src/main/java/com/playsoccer/PlaySoccerApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/back/src/main/java/com/playsoccer/domain/game/dto/GameDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/back/src/main/java/com/playsoccer/domain/game/dto/GameDTO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/back/src/main/java/com/playsoccer/domain/game/repository/GameCustomRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/back/src/main/java/com/playsoccer/domain/game/repository/GameCustomRepository.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/back/src/main/java/com/playsoccer/domain/game/repository/GameCustomRepositoryImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/back/src/main/java/com/playsoccer/domain/game/repository/GameCustomRepositoryImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/back/src/main/java/com/playsoccer/domain/gameApply/controller/GameApplyController.java" beforeDir="false" afterPath="$PROJECT_DIR$/back/src/main/java/com/playsoccer/domain/gameApply/controller/GameApplyController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/back/src/main/java/com/playsoccer/domain/gameApply/service/GameApplyService.java" beforeDir="false" afterPath="$PROJECT_DIR$/back/src/main/java/com/playsoccer/domain/gameApply/service/GameApplyService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/back/src/main/java/com/playsoccer/domain/game/service/GameScheduleService.java" beforeDir="false" afterPath="$PROJECT_DIR$/back/src/main/java/com/playsoccer/domain/game/service/GameScheduleService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/back/src/main/java/com/playsoccer/domain/game/service/GameService.java" beforeDir="false" afterPath="$PROJECT_DIR$/back/src/main/java/com/playsoccer/domain/game/service/GameService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/back/src/main/java/com/playsoccer/domain/gameApply/repository/GameApplyRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/back/src/main/java/com/playsoccer/domain/gameApply/repository/GameApplyRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/back/src/main/java/com/playsoccer/domain/player/controller/PlayerController.java" beforeDir="false" afterPath="$PROJECT_DIR$/back/src/main/java/com/playsoccer/domain/player/controller/PlayerController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/back/src/main/java/com/playsoccer/domain/player/entity/PlayerInfo.java" beforeDir="false" afterPath="$PROJECT_DIR$/back/src/main/java/com/playsoccer/domain/player/entity/PlayerInfo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/back/src/main/java/com/playsoccer/domain/player/repository/PlayerRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/back/src/main/java/com/playsoccer/domain/player/repository/PlayerRepository.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/back/src/main/java/com/playsoccer/domain/player/service/PlayerService.java" beforeDir="false" afterPath="$PROJECT_DIR$/back/src/main/java/com/playsoccer/domain/player/service/PlayerService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/back/src/main/java/com/playsoccer/domain/stadium/dto/StadiumDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/back/src/main/java/com/playsoccer/domain/stadium/dto/StadiumDTO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/back/src/main/java/com/playsoccer/global/config/JpaConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/back/src/main/java/com/playsoccer/global/config/JpaConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/back/src/main/java/com/playsoccer/domain/stadiumManager/service/StadiumMangerService.java" beforeDir="false" afterPath="$PROJECT_DIR$/back/src/main/java/com/playsoccer/domain/stadiumManager/service/StadiumMangerService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/front/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/front/src/App.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/front/src/components/layout/Main.js" beforeDir="false" afterPath="$PROJECT_DIR$/front/src/components/layout/Main.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/front/src/components/layout/MenuBar.js" beforeDir="false" afterPath="$PROJECT_DIR$/front/src/components/layout/MenuBar.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/front/src/store/AppStore.js" beforeDir="false" afterPath="$PROJECT_DIR$/front/src/store/AppStore.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/front/src/store/RootStore.js" beforeDir="false" afterPath="$PROJECT_DIR$/front/src/store/RootStore.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -37,7 +54,22 @@
         </task>
         <projects_view>
           <tree_state>
-            <expand />
+            <expand>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="play-soccer" type="f1a62948:ProjectNode" />
+              </path>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="play-soccer" type="f1a62948:ProjectNode" />
+                <item name="Dependencies" type="6de06a37:ExternalSystemViewDefaultContributor$MyDependenciesNode" />
+              </path>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="play-soccer" type="f1a62948:ProjectNode" />
+                <item name="Run Configurations" type="7b0102dc:RunConfigurationsNode" />
+              </path>
+            </expand>
             <select />
           </tree_state>
         </projects_view>
@@ -54,6 +86,19 @@
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;
+  }
+}</component>
+  <component name="GithubPullRequestsUISettings">
+    <option name="selectedUrlAndAccountId">
+      <UrlAndAccount>
+        <option name="accountId" value="5e628a31-b08a-451a-8949-8441dce583a0" />
+        <option name="url" value="https://github.com/chamatung/soccer-reservation.git" />
+      </UrlAndAccount>
+    </option>
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
@@ -97,11 +142,11 @@
 }</component>
   <component name="RecentsManager">
     <key name="CreateClassDialog.RecentsKey">
+      <recent name="com.playsoccer.domain.player.dto" />
       <recent name="com.playsoccer.domain.gameApply.repository" />
       <recent name="com.playsoccer.domain.area.repository" />
       <recent name="com.playsoccer.domain.stadiumManager.dto" />
       <recent name="com.playsoccer.domain.stadiumManager.repository" />
-      <recent name="com.playsoccer.domain.stadiumManager.service" />
     </key>
     <key name="ImportMappingsDialog.RecentPackages">
       <recent name="" />
@@ -231,7 +276,13 @@
       <workItem from="1680438773436" duration="1628000" />
       <workItem from="1680479174056" duration="17246000" />
       <workItem from="1680573209752" duration="16238000" />
-      <workItem from="1680612798581" duration="3716000" />
+      <workItem from="1680612798581" duration="4514000" />
+      <workItem from="1680652486735" duration="15072000" />
+      <workItem from="1680680287718" duration="1014000" />
+      <workItem from="1680739473714" duration="9527000" />
+      <workItem from="1680852382897" duration="5754000" />
+      <workItem from="1681087362747" duration="948000" />
+      <workItem from="1681172682439" duration="4487000" />
     </task>
     <task id="LOCAL-00001" summary="table column 어노테이션 추가&#10;서버측 로그인 회원가입 구현">
       <created>1679833870759</created>
@@ -261,7 +312,14 @@
       <option name="project" value="LOCAL" />
       <updated>1680612917767</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="다른날 신청 시 금일날짜 리스트 조회버그 수정">
+      <created>1680617334381</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1680617334381</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -272,7 +330,8 @@
     <MESSAGE value="메인페이지(소셜경기 예약) 날짜로직, querydsl 설정, 스케줄 로직 작성필요" />
     <MESSAGE value="소셜경기리스트 출력 및 자동 insert 스케줄러" />
     <MESSAGE value="소셜경기리스트 신청 및 신청취소" />
-    <option name="LAST_COMMIT_MESSAGE" value="소셜경기리스트 신청 및 신청취소" />
+    <MESSAGE value="다른날 신청 시 금일날짜 리스트 조회버그 수정" />
+    <option name="LAST_COMMIT_MESSAGE" value="다른날 신청 시 금일날짜 리스트 조회버그 수정" />
   </component>
   <component name="XDebuggerManager">
     <watches-manager>

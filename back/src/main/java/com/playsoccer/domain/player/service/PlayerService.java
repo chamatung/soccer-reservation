@@ -1,6 +1,7 @@
 package com.playsoccer.domain.player.service;
 
 import com.playsoccer.domain.player.dto.LoginDTO;
+import com.playsoccer.domain.player.dto.PlayerInfoDTO;
 import com.playsoccer.domain.player.dto.RegistDTO;
 import com.playsoccer.domain.player.entity.Player;
 import com.playsoccer.domain.player.entity.PlayerInfo;
@@ -72,5 +73,14 @@ public class PlayerService {
 
         map.put("msg", "회원가입 성공");
         return new ResponseEntity<>(map, HttpStatus.OK);
+    }
+
+    public PlayerInfoDTO findInfo(String email) {
+        Map<String, String> map = new HashMap<>();
+
+        Player player = playerRepository.findByEmail(email);
+        PlayerInfo playerInfo = player.getPlayerInfo();
+
+        return PlayerInfoDTO.from(player,playerInfo);
     }
 }
