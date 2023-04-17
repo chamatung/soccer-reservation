@@ -46,6 +46,8 @@ public class QPlayer extends EntityPathBase<Player> {
 
     public final QPlayerInfo playerInfo;
 
+    public final SetPath<PlayerRole, QPlayerRole> playerRoleList = this.<PlayerRole, QPlayerRole>createSet("playerRoleList", PlayerRole.class, QPlayerRole.class, PathInits.DIRECT2);
+
     public QPlayer(String variable) {
         this(Player.class, forVariable(variable), INITS);
     }
