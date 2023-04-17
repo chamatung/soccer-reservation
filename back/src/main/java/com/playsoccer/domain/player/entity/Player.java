@@ -1,7 +1,6 @@
 package com.playsoccer.domain.player.entity;
 
 
-import com.playsoccer.domain.BaseEntity;
 import com.playsoccer.domain.gameApply.entity.GameApply;
 import com.playsoccer.domain.gameRecord.entity.GameRecord;
 import jakarta.persistence.*;
@@ -9,7 +8,9 @@ import lombok.*;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Entity
 @Getter
@@ -37,16 +38,19 @@ public class Player {
     @Column(length = 100, nullable = true)
     private String addressDetail; //상세주소
 
-    @OneToMany(mappedBy = "player")
-    private List<PlayerFavorArea> playerFavorAreaList = new ArrayList<>();
-
     @OneToOne(fetch = FetchType.LAZY, mappedBy = "player")
     private PlayerInfo playerInfo; //선수정보
 
     @OneToMany(mappedBy = "player")
-    private List<GameApply> gameApplies = new ArrayList<>();
+    private final List<PlayerFavorArea> playerFavorAreaList = new ArrayList<>();
 
     @OneToMany(mappedBy = "player")
-    private List<GameRecord> gameRecords = new ArrayList<>();
+    private final List<GameApply> gameApplies = new ArrayList<>();
+
+    @OneToMany(mappedBy = "player")
+    private final List<GameRecord> gameRecords = new ArrayList<>();
+
+    @OneToMany(mappedBy = "player")
+    private final Set<PlayerRole> playerRoleList = new HashSet<>();
 
 }

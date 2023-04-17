@@ -1,6 +1,5 @@
 package com.playsoccer.domain.player.dto;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
 import com.playsoccer.domain.player.entity.Player;
 import com.playsoccer.domain.player.entity.PlayerInfo;
 import lombok.Builder;
@@ -13,7 +12,7 @@ import java.time.LocalDate;
 public class PlayerInfoDTO {
     private String name;
     private LocalDate birth;
-
+    private String email;
     //상세정보
     private String level;
     private int carrer;
@@ -35,5 +34,12 @@ public class PlayerInfoDTO {
                 .height(playerInfo.getHeight())
                 .nation(playerInfo.getNation())
                 .build();
+    }
+
+    public static PlayerInfoDTO fromPlayer(Player player) {
+        return PlayerInfoDTO.builder()
+                .name(player.getName())
+                .email(player.getEmail())
+                .birth(player.getBirth()).build();
     }
 }

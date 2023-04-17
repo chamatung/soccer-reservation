@@ -12,6 +12,7 @@ import { LockOutlined } from "@material-ui/icons";
 import apiService from "../../services/ApiService";
 import { useNavigate } from "react-router-dom";
 import { inject, observer } from "mobx-react";
+import Cookie from "../../services/Cookie";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -80,17 +81,13 @@ const Login = inject("appStore")(
         apiService
           .post("player/signIn", apiParam)
           .then((response) => {
-            appStore.loginCheckChange(true); // 로그인 성공 시 변경
-
-            const { email, name } = response.data;
-            appStore.changeData("email", email);
-            appStore.changeData("name", name);
-
+            const token = response.data.token;
+            localStorage.setItem("token", token);
+            appStore.handleLoginCheck();
             navigate("/");
           })
-          .catch(({ response }) => {
-            let { msg } = response?.data;
-            alert(msg);
+          .catch((response) => {
+            console.log(response);
           });
       }
     };

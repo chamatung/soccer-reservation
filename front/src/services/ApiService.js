@@ -1,10 +1,4 @@
-import axios from "axios";
-
-const Api = axios.create({
-  baseURL: "",
-  timeout: 30000,
-  headers: { "Content-Type": "application/json" },
-});
+import Api from "./Api";
 
 const apiPrefixUri = "http://localhost:8085/api/s/";
 

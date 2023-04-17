@@ -1,14 +1,6 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { makeStyles } from "@material-ui/core/styles";
-import {
-  AppBar,
-  Toolbar,
-  Typography,
-  Button,
-  Container,
-  Grid,
-  Paper,
-} from "@material-ui/core";
+import { AppBar, Toolbar, Typography, Button } from "@material-ui/core";
 import { inject, observer } from "mobx-react";
 
 const useStyles = makeStyles((theme) => ({
@@ -31,11 +23,17 @@ const useStyles = makeStyles((theme) => ({
 const Home = inject("homeStore")(
   observer(({ homeStore }) => {
     const classes = useStyles();
-    const { name } = homeStore.player;
+
+    useEffect(() => {
+      homeStore.loadPlayer();
+    }, []);
 
     const handleLogout = () => {
       homeStore.handleLogout();
     };
+
+    const { info } = homeStore;
+
     return (
       <div className={classes.root}>
         <AppBar position='static'>
@@ -48,7 +46,7 @@ const Home = inject("homeStore")(
             <Typography variant='h6' className={classes.title}>
               Soccer Play
             </Typography>
-            <Typography>{name} 님</Typography>
+            <Typography>{info.name} 님</Typography>
             <Button
               color='inherit'
               onClick={() => {

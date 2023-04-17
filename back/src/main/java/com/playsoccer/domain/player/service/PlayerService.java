@@ -5,18 +5,24 @@ import com.playsoccer.domain.player.dto.PlayerInfoDTO;
 import com.playsoccer.domain.player.dto.RegistDTO;
 import com.playsoccer.domain.player.entity.Player;
 import com.playsoccer.domain.player.entity.PlayerInfo;
+import com.playsoccer.domain.player.entity.PlayerRole;
+import com.playsoccer.domain.player.entity.Role;
 import com.playsoccer.domain.player.repository.PlayerInfoRepository;
 import com.playsoccer.domain.player.repository.PlayerRepository;
+import com.playsoccer.domain.player.repository.PlayerRoleRepository;
+import com.playsoccer.domain.player.repository.RoleRepository;
 import lombok.RequiredArgsConstructor;
 import org.apache.commons.lang3.StringUtils;
+import org.hibernate.engine.spi.SessionDelegatorBaseImpl;
+import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.util.ObjectUtils;
 
 
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Optional;
+import java.util.*;
 
 @RequiredArgsConstructor
 @Service
@@ -24,31 +30,10 @@ public class PlayerService {
 
     private final PlayerRepository playerRepository;
     private final PlayerInfoRepository playerInfoRepository;
+    private final RoleRepository roleRepository;
+    private final PlayerRoleRepository playerRoleRepository;
 
-    public ResponseEntity<Map<String, String>> signIn(LoginDTO login) {
-
-        Map<String, String> map = new HashMap<>();
-
-        if(login == null) {
-            map.put("msg", "로그인 정보가 없습니다.");
-            return new ResponseEntity<>(map, HttpStatus.NOT_FOUND);
-        }
-        //orElseThrow 쓸 것
-        Optional<Player> player = Optional.ofNullable(playerRepository.findByEmail(login.getEmail()));
-        if(player.isPresent()) {
-            if(StringUtils.equals(player.get().getEmail(),login.getEmail())) {
-                if(StringUtils.equals(player.get().getPassword(),login.getEmail())) {
-                    map.put("email", player.get().getEmail());
-                    map.put("name", player.get().getName());
-                    map.put("msg","로그인 성공");
-                    return new ResponseEntity<>(map, HttpStatus.OK);
-                }
-            }
-        }
-
-        map.put("msg", "email/password를 다시 확인해주세요.");
-        return new ResponseEntity<>(map, HttpStatus.BAD_REQUEST);
-    }
+    private final PasswordEncoder passwordEncoder;
 
     public ResponseEntity<Map<String, String>> regist(RegistDTO regist) {
         Map<String, String> map = new HashMap<>();
@@ -57,11 +42,14 @@ public class PlayerService {
             map.put("msg", "회원가입 정보가 없습니다.");
             return new ResponseEntity<>(map, HttpStatus.NOT_FOUND);
         }
+        regist.changePassword(passwordEncoder.encode(regist.getPassword()));
+
         Player player = playerRepository.findByEmail(regist.getEmail());
         if(player != null) {
             map.put("msg", "이미 등록된 회원입니다.");
             return new ResponseEntity<>(map, HttpStatus.BAD_REQUEST);
         }
+
 
         Player insertPlayer = regist.toPlayer();
         playerRepository.save(insertPlayer);
@@ -70,6 +58,9 @@ public class PlayerService {
         insertInfo.changeId(insertPlayer.getId());
         playerInfoRepository.save(insertInfo);
 
+        Role role = new Role("ROLE_USER");
+        PlayerRole playerRole = PlayerRole.setPlayerAndRole(insertPlayer, role);
+        playerRoleRepository.save(playerRole);
 
         map.put("msg", "회원가입 성공");
         return new ResponseEntity<>(map, HttpStatus.OK);

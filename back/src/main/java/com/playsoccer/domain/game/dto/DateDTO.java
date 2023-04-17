@@ -17,6 +17,7 @@ public class DateDTO {
     private String nextYear;
     private String nextMonth;
 
+
     public DateDTO() {
         this.now = LocalDate.now();
         this.nowYear = String.valueOf(now.getYear());

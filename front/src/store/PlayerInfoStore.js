@@ -12,17 +12,14 @@ class PlayerInfoStore {
   }
 
   info = {};
+
   loginCheck() {
     return this.rootStore.appStore.loginCheck;
   }
 
   init() {
-    const email = this.rootStore.appStore.email;
-    const apiParam = {
-      email,
-    };
     apiService
-      .get("player/my-info", apiParam)
+      .get("player/my-info", {})
       .then((response) => {
         this.info = response.data;
       })

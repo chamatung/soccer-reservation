@@ -9,6 +9,7 @@ import com.playsoccer.domain.player.repository.PlayerRepository;
 import com.playsoccer.domain.stadium.dto.StadiumDTO;
 import com.playsoccer.domain.stadium.entity.Stadium;
 import com.playsoccer.domain.stadium.repository.StadiumRepository;
+import com.playsoccer.global.util.SecurityUtil;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.apache.commons.lang3.StringUtils;
@@ -19,6 +20,7 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @RequiredArgsConstructor
 @Service
@@ -42,6 +44,7 @@ public class GameService {
         DateDTO date = new DateDTO();
 
         List<StadiumDTO> stadiumList = stadiumRepository.findStadiumList(); // 전체리스트
+
         List<Long> gameStadiumList = gameRepository.findStadiumGame(date.getNowYear(),date.getNowMonth()); //이번달 등록된 게임구장 리스트
         List<Long> nextGameStadiumList = gameRepository.findStadiumGame(date.getNextYear(),date.getNextMonth()); //다음달 등록된 게임구장 리스트
 
@@ -109,19 +112,19 @@ public class GameService {
     }
 
     @Transactional
-    public List<GameDTO> findGameList(String day, String month, String year, String email) {
-//        allStadiumGameCreate();
+    public List<GameDTO> findGameList(String day, String month, String year) {
+        String username = SecurityUtil.getCurrentUsername().get();
+        Player player = playerRepository.findByEmail(username);
+        allStadiumGameCreate();
         changeGameAvailability(); //현재 시간 기준 이전 게임들 숨김처리
 
-        Player player = playerRepository.findByEmail(email);
         Long playerId = player.getId();
-
         List<GameDTO> list = gameRepository.findGameList(day,month,year,playerId);
 
-        return list;
+        return CollectionUtils.isEmpty(list) ? new ArrayList<>() : list;
     }
 
-    private void changeGameAvailability() {
+    public void changeGameAvailability() {
 
         LocalDateTime now = LocalDateTime.now();
 

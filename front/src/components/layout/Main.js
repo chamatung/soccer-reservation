@@ -13,11 +13,9 @@ const Main = () => {
       <MenuBar />
       <Routes>
         <Route path='/' element={<SocialReservation />}></Route>
-        <Route path='/main' element={<SocialReservation />}></Route>
         <Route path='/my-info' element={<PlayerInfoPage />}></Route>
       </Routes>
     </>
   );
 };
-
 export default Main;

@@ -1,4 +1,4 @@
-package com.playsoccer.domain;
+package com.playsoccer.domain.common.entity;
 
 import jakarta.persistence.MappedSuperclass;
 import org.springframework.data.annotation.CreatedBy;

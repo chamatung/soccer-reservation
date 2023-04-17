@@ -1,20 +1,19 @@
 import { action, makeObservable, observable } from "mobx";
+import Cookie from "../services/Cookie";
 
 class AppStore {
   loginCheck = false;
+  registPath = window.location.pathname === "/regist" ? true : false;
   managerCheck = false;
-  email = "";
-  name = "";
 
   constructor(rootStore) {
     this.rootStore = rootStore;
 
     makeObservable(this, {
       loginCheck: observable,
-      email: observable,
-      name: observable,
+      registPath: observable,
       changeData: action,
-      loginCheckChange: action,
+      handleLoginCheck: action,
       handleLogout: action,
     });
   }
@@ -23,22 +22,13 @@ class AppStore {
     this[key] = value;
   }
 
-  loginCheckChange(check, managerCheck = false) {
-    if (managerCheck === true) {
-      this.managerCheck = true;
-    }
-    this.loginCheck = check;
+  handleLoginCheck() {
+    this.loginCheck = localStorage.getItem("token") ? true : false;
   }
 
   handleLogout() {
-    this.email = "";
-    this.name = "";
+    localStorage.removeItem("token");
     this.loginCheck = false;
-  }
-
-  get player() {
-    const player = { email: this.email, name: this.name };
-    return player;
   }
 }
 
