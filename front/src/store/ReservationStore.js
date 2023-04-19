@@ -3,12 +3,7 @@ import apiService from "../services/ApiService";
 
 class ReservationStore {
   week = ["일", "월", "화", "수", "목", "금", "토"];
-  nowYear = "";
-  nextYear = "";
-  nowMonth = "";
-  nextMonth = "";
-  nowDays = [];
-  nextDays = [];
+  dateInfo = {};
   today = new Date();
   currentDayInfo = {};
   gameList = [];
@@ -17,104 +12,81 @@ class ReservationStore {
     this.rootStore = rootStore;
     makeObservable(this, {
       week: observable,
-      nowYear: observable,
-      nextYear: observable,
-      nowMonth: observable,
-      nextMonth: observable,
+      dateInfo: observable,
       currentDayInfo: observable,
-      nowDays: observable,
-      nextDays: observable,
       today: observable,
       gameList: observable,
+      daysArray: action,
       dateCalculation: action,
-      nowDaysArray: action,
-      nextDaysArray: action,
       searchGameList: action,
-      loginInfo: action,
-      // gameApply: action,
     });
   }
 
   init() {
-    this.loginInfo();
     this.dateCalculation();
     this.searchGameList();
   }
 
-  loginInfo() {}
-
   //다음달은 30일- 이번달 나온 일수로만 하기 2월 포함하는 경우는 28일까지만 윤년의 경우도 체크할 것
   dateCalculation() {
     let today = this.today;
-    let nowDays = [];
-    let nextDays = [];
-    this.currentDay = today.getDate();
-    this.nowMonth = today.getMonth() + 1;
-    this.nowYear = today.getFullYear();
+    let nowLastDay = today.getMonth() + 1 in [1, 3, 5, 7, 8, 10, 12] ? 31 : 30;
+    let nextLastDay = today.getMonth() + 2 in [1, 3, 5, 7, 8, 10, 12] ? 31 : 30;
+    let dateInfo = {
+      nowYear: today.getFullYear(),
+      nextYear: today.getFullYear(),
+      nowMonth: today.getMonth() + 1,
+      nextMonth: today.getMonth() + 2,
+      nowDays: [],
+      nextDays: [],
+      currentDay: today.getDate(),
+    };
 
-    if (this.nowMonth === 12) {
-      this.nextMonth = 1;
-      this.nextYear = this.nowYear + 1;
+    if (dateInfo.nowMonth === 12) {
+      dateInfo = { ...dateInfo, nextMonth: 1 };
+      dateInfo = { ...dateInfo, nextYear: dateInfo.nowYear + 1 };
     } else {
-      this.nextMonth = this.nowMonth + 1;
+      dateInfo = { ...dateInfo, nextMonth: dateInfo.nowMonth + 1 };
     }
 
-    let nextStartDayCnt;
-    if (this.nowMonth in [1, 3, 5, 7, 8, 10, 12]) {
-      nowDays = Array.from(
-        { length: 31 - today.getDate() },
-        (v, i) => i + today.getDate()
-      );
-    } else if (today.getMonth() + 1 in [2, 4, 6, 9, 11]) {
-      if (today.getMonth + 1 === 2) {
-        let length;
-        if (!this.leapYearCheck()) {
-          length = 28 - today.getDate();
-        } else {
-          length = 29 - today.getDate();
-        }
-        nowDays = Array.from({ length: length }, (v, i) => i + today.getDate());
-      } else {
-        nowDays = Array.from(
-          { length: 30 - today.getDate() },
-          (v, i) => i + today.getDate()
-        );
-      }
-    }
+    nowLastDay = dateInfo.nowMonth === 2 && this.leapYearCheck() ? 29 : 28;
+    nextLastDay = dateInfo.nextMonth === 2 && this.leapYearCheck() ? 29 : 28;
 
-    const nowDaysArray = this.nowDaysArray(nowDays);
-    nowDays = nowDaysArray.days;
-    nextStartDayCnt = nowDaysArray.nextCnt;
+    let nowDaysArray = Array.from({ length: nowLastDay }, (v, i) => i + 1);
+    let nextDaysArray = Array.from({ length: nextLastDay }, (v, i) => i + 1);
 
-    this.nowDays = nowDays;
-    if (today.getDate() !== 1) {
-      nextDays = this.nextDaysArray(
-        today,
-        nowDaysArray.length,
-        nextStartDayCnt
-      );
-      this.nextDays = nextDays;
-    }
+    nowDaysArray = this.daysArray(nowDaysArray);
+    nowDaysArray.days.splice(0, today.getDate() - 1);
+
+    dateInfo.nowDays = nowDaysArray.days;
+    let nextDayCnt = nowDaysArray.nextCnt; // 요일 index값
+    dateInfo.nextDays = this.daysArray(nextDaysArray, nextDayCnt, true).days;
 
     const dayInfo = {
       day: today.getDate(),
-      month: this.nowMonth,
-      year: this.nowYear,
+      month: dateInfo.nowMonth,
+      year: dateInfo.nowYear,
     };
 
     this.currentDayInfo = dayInfo;
+    this.dateInfo = dateInfo;
   }
-  //이번달 정보
-  nowDaysArray(days) {
-    let startDayCnt = this.today.getDay() - 1;
 
-    const newDays = days.map((nowDay, index) => {
+  //이번달 정보
+  daysArray(
+    days,
+    nextDayCnt = this.today.getDay() - 1,
+    nextMonthCheck = false
+  ) {
+    let startDayCnt = nextDayCnt;
+
+    const newDays = days.map((Day, index) => {
       startDayCnt += 1;
       if (startDayCnt > 6) {
         startDayCnt = 0;
       }
       return {
-        date: nowDay,
+        date: Day,
         day: this.week[startDayCnt],
       };
     });
@@ -124,27 +96,7 @@ class ReservationStore {
       length: newDays.length,
     };
   }
-  //다음달 정보
-  nextDaysArray(today, nowDaysLength, nextStartDayCnt) {
-    let nextDays = [];
-    if (today.getMonth() + 1 === 1 && today.getDate() in [30, 31]) {
-      nextDays = Array.from({ length: 28 - nowDaysLength }, (v, i) => i + 1);
-    } else {
-      nextDays = Array.from({ length: 30 - nowDaysLength }, (v, i) => i + 1);
-    }
-    nextStartDayCnt -= 1;
-    const newNextDays = nextDays.map((nextDay, index) => {
-      nextStartDayCnt += 1;
-      if (nextStartDayCnt > 6) {
-        nextStartDayCnt = 0;
-      }
-      return {
-        date: nextDay,
-        day: this.week[nextStartDayCnt],
-      };
-    });
-    return newNextDays;
-  }
+
   //윤년체크
   leapYearCheck() {
     const nowYear = this.today.getFullYear;
@@ -169,6 +121,7 @@ class ReservationStore {
     const apiParam = {
       ...dayInfo,
     };
+
     apiService
       .get("games", apiParam)
       .then(({ data }) => {
@@ -203,7 +156,7 @@ class ReservationStore {
           console.log(response);
           this.searchGameList();
         })
-        .catch(({ response }) => {
+        .catch((response) => {
           console.log(response);
         });
     }

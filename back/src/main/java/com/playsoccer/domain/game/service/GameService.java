@@ -3,7 +3,6 @@ package com.playsoccer.domain.game.service;
 import com.playsoccer.domain.game.dto.DateDTO;
 import com.playsoccer.domain.game.dto.GameDTO;
 import com.playsoccer.domain.game.repository.GameRepository;
-import com.playsoccer.domain.gameApply.repository.GameApplyRepository;
 import com.playsoccer.domain.player.entity.Player;
 import com.playsoccer.domain.player.repository.PlayerRepository;
 import com.playsoccer.domain.stadium.dto.StadiumDTO;
@@ -12,15 +11,12 @@ import com.playsoccer.domain.stadium.repository.StadiumRepository;
 import com.playsoccer.global.util.SecurityUtil;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
-import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Service;
 import org.springframework.util.CollectionUtils;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 @RequiredArgsConstructor
 @Service

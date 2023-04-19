@@ -12,7 +12,7 @@ import { LockOutlined } from "@material-ui/icons";
 import apiService from "../../services/ApiService";
 import { useNavigate } from "react-router-dom";
 import { inject, observer } from "mobx-react";
-import Cookie from "../../services/Cookie";
+import { setToken } from "../../utils/Auth";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -82,8 +82,9 @@ const Login = inject("appStore")(
           .post("player/signIn", apiParam)
           .then((response) => {
             const token = response.data.token;
-            localStorage.setItem("token", token);
+            setToken(token);
             appStore.handleLoginCheck();
+            debugger;
             navigate("/");
           })
           .catch((response) => {

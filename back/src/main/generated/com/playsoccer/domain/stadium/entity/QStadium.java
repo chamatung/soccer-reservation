@@ -34,7 +34,7 @@ public class QStadium extends EntityPathBase<Stadium> {
 
     public final StringPath indoorStatus = createString("indoorStatus");
 
-    public final com.playsoccer.domain.stadiumManager.entity.QStadiumManager manager;
+    public final com.playsoccer.domain.stadiummanager.entity.QStadiumManager manager;
 
     public final StringPath name = createString("name");
 
@@ -61,7 +61,7 @@ public class QStadium extends EntityPathBase<Stadium> {
     public QStadium(Class<? extends Stadium> type, PathMetadata metadata, PathInits inits) {
         super(type, metadata, inits);
         this.area = inits.isInitialized("area") ? new com.playsoccer.domain.area.entity.QArea(forProperty("area")) : null;
-        this.manager = inits.isInitialized("manager") ? new com.playsoccer.domain.stadiumManager.entity.QStadiumManager(forProperty("manager"), inits.get("manager")) : null;
+        this.manager = inits.isInitialized("manager") ? new com.playsoccer.domain.stadiummanager.entity.QStadiumManager(forProperty("manager"), inits.get("manager")) : null;
     }
 
 }

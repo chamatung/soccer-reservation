@@ -2,9 +2,7 @@ import { inject } from "mobx-react";
 import { observer } from "mobx-react-lite";
 import Main from "./components/layout/Main";
 import Login from "./components/login/Login";
-import ManagerRegist from "./components/login/ManagerRegist";
 import Regist from "./components/login/Regist";
-import ManagerLogin from "./components/login/ManagerLogin";
 
 const App = inject("appStore")(
   observer(({ appStore }) => {

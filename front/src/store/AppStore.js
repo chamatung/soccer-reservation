@@ -1,5 +1,4 @@
 import { action, makeObservable, observable } from "mobx";
-import Cookie from "../services/Cookie";
 
 class AppStore {
   loginCheck = false;

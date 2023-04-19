@@ -1,8 +1,8 @@
 package com.playsoccer.domain.player.entity;
 
 
-import com.playsoccer.domain.gameApply.entity.GameApply;
-import com.playsoccer.domain.gameRecord.entity.GameRecord;
+import com.playsoccer.domain.gameapply.entity.GameApply;
+import com.playsoccer.domain.gamerecord.entity.GameRecord;
 import jakarta.persistence.*;
 import lombok.*;
 

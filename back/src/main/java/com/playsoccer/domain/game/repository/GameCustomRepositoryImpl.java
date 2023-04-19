@@ -6,7 +6,6 @@ import com.querydsl.core.types.Projections;
 import com.querydsl.jpa.JPAExpressions;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import lombok.RequiredArgsConstructor;
-import org.springframework.data.jpa.repository.Query;
 import org.springframework.jdbc.core.BatchPreparedStatementSetter;
 import org.springframework.jdbc.core.JdbcTemplate;
 
@@ -15,7 +14,7 @@ import java.sql.SQLException;
 import java.util.List;
 
 import static com.playsoccer.domain.game.entity.QGame.game;
-import static com.playsoccer.domain.gameApply.entity.QGameApply.gameApply;
+import static com.playsoccer.domain.gameapply.entity.QGameApply.gameApply;
 import static com.playsoccer.domain.stadium.entity.QStadium.stadium;
 
 @RequiredArgsConstructor

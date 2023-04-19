@@ -64,8 +64,7 @@ const SocialReservation = inject("reservationStore")(
       reservationStore.init();
     }, []);
 
-    const { nowDays, nextDays, nowMonth, nowYear, nextMonth, nextYear } =
-      reservationStore;
+    const { dateInfo } = reservationStore;
 
     const gameListChange = (day, month, year) => {
       const dayInfo = {
@@ -76,7 +75,6 @@ const SocialReservation = inject("reservationStore")(
       reservationStore.changeData("currentDayInfo", dayInfo);
       reservationStore.searchGameList();
     };
-
     return (
       <Container className={classes.container}>
         <Box
@@ -93,20 +91,30 @@ const SocialReservation = inject("reservationStore")(
             scrollButtons='on'
             aria-label='visible arrows tabs example'
           >
-            {nowDays.map((nowDay, index) => {
+            {dateInfo.nowDays?.map((nowDay, index) => {
               return (
                 <Tab
                   label={nowDay.date + " " + nowDay.day}
-                  onClick={() => gameListChange(nowDay.date, nowMonth, nowYear)}
+                  onClick={() =>
+                    gameListChange(
+                      nowDay.date,
+                      dateInfo.nowMonth,
+                      dateInfo.nowYear
+                    )
+                  }
                 />
               );
             })}
-            {nextDays?.map((nextDay, index) => {
+            {dateInfo.nextDays?.map((nextDay, index) => {
               return (
                 <Tab
                   label={nextDay.date + " " + nextDay.day}
                   onClick={() =>
-                    gameListChange(nextDay.date, nextMonth, nextYear)
+                    gameListChange(
+                      nextDay.date,
+                      dateInfo.nextMonth,
+                      dateInfo.nextYear
+                    )
                   }
                 />
               );

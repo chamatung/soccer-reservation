@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import { AppBar, Toolbar, Typography, Button } from "@material-ui/core";
 import { inject, observer } from "mobx-react";
+import { getToken } from "../../utils/Auth";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -23,16 +24,25 @@ const useStyles = makeStyles((theme) => ({
 const Home = inject("homeStore")(
   observer(({ homeStore }) => {
     const classes = useStyles();
+    const { info } = homeStore;
+    let token = localStorage.getItem("token");
 
+    //초기페이지 회원정보 가져오기
     useEffect(() => {
       homeStore.loadPlayer();
+      // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
+    //토근값 사라지는 경우 logout
+    useEffect(() => {
+      if (!getToken()) {
+        handleLogout();
+      }
+      // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [token]);
 
     const handleLogout = () => {
       homeStore.handleLogout();
     };
-
-    const { info } = homeStore;
 
     return (
       <div className={classes.root}>

@@ -4,7 +4,7 @@ import Home from "./Home";
 
 import MenuBar from "./MenuBar";
 import SocialReservation from "../reservation/SocialReservation";
-import PlayerInfoPage from "../../test/PlayerInfoPage";
+import PlayerInfoPage from "../info/PlayerInfoPage";
 
 const Main = () => {
   return (

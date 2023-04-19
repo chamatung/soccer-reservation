@@ -17,10 +17,6 @@ public class GameController {
 
     /**
     * 일자 기준 게임리스트 조회
-    * @param {String} day
-    * @param {String} month
-    * @param {String} year
-    * @return
     * */
     @GetMapping
     public List<GameDTO> findGameList(@RequestParam String day, @RequestParam String month, @RequestParam String year) {

@@ -23,8 +23,8 @@ class HomeStore {
         this.info = response.data;
         console.log(response.data);
       })
-      .catch(({ response }) => {
-        alert(response);
+      .catch((response) => {
+        console.log(response);
       });
   }
 }

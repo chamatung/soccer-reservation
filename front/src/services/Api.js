@@ -1,4 +1,5 @@
 import axios from "axios";
+import { getToken } from "../utils/Auth";
 
 const Api = axios.create({
   baseURL: "",
@@ -9,15 +10,15 @@ Api.defaults.withCredentials = true;
 
 // 요청 인터셉터 추가하기
 Api.interceptors.request.use(
+  //localStorage 전역으로 변경
   function (config) {
-    let token = localStorage.getItem("token");
+    let token = getToken();
+    debugger;
     //로그인 화면시 토큰 정보 빈값으로 처리
     if (config.url && config.url.indexOf("signIn") !== -1) {
       config.headers["Authorization"] = "";
-      console.log("11");
     } else {
       config.headers["Authorization"] = "Bearer " + token;
-      console.log("d");
     }
 
     return config;

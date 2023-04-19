@@ -32,5 +32,4 @@ public class DateDTO {
             this.nextMonth = "01";
         }
     }
-
 }

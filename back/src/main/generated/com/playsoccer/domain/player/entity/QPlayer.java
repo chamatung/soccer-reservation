@@ -30,9 +30,9 @@ public class QPlayer extends EntityPathBase<Player> {
 
     public final StringPath email = createString("email");
 
-    public final ListPath<com.playsoccer.domain.gameApply.entity.GameApply, com.playsoccer.domain.gameApply.entity.QGameApply> gameApplies = this.<com.playsoccer.domain.gameApply.entity.GameApply, com.playsoccer.domain.gameApply.entity.QGameApply>createList("gameApplies", com.playsoccer.domain.gameApply.entity.GameApply.class, com.playsoccer.domain.gameApply.entity.QGameApply.class, PathInits.DIRECT2);
+    public final ListPath<com.playsoccer.domain.gameapply.entity.GameApply, com.playsoccer.domain.gameapply.entity.QGameApply> gameApplies = this.<com.playsoccer.domain.gameapply.entity.GameApply, com.playsoccer.domain.gameapply.entity.QGameApply>createList("gameApplies", com.playsoccer.domain.gameapply.entity.GameApply.class, com.playsoccer.domain.gameapply.entity.QGameApply.class, PathInits.DIRECT2);
 
-    public final ListPath<com.playsoccer.domain.gameRecord.entity.GameRecord, com.playsoccer.domain.gameRecord.entity.QGameRecord> gameRecords = this.<com.playsoccer.domain.gameRecord.entity.GameRecord, com.playsoccer.domain.gameRecord.entity.QGameRecord>createList("gameRecords", com.playsoccer.domain.gameRecord.entity.GameRecord.class, com.playsoccer.domain.gameRecord.entity.QGameRecord.class, PathInits.DIRECT2);
+    public final ListPath<com.playsoccer.domain.gamerecord.entity.GameRecord, com.playsoccer.domain.gamerecord.entity.QGameRecord> gameRecords = this.<com.playsoccer.domain.gamerecord.entity.GameRecord, com.playsoccer.domain.gamerecord.entity.QGameRecord>createList("gameRecords", com.playsoccer.domain.gamerecord.entity.GameRecord.class, com.playsoccer.domain.gamerecord.entity.QGameRecord.class, PathInits.DIRECT2);
 
     public final NumberPath<Long> id = createNumber("id", Long.class);
 

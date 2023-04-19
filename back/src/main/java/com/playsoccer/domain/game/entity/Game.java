@@ -1,14 +1,8 @@
 package com.playsoccer.domain.game.entity;
 
-import com.playsoccer.domain.gameApply.entity.GameApply;
-import com.playsoccer.domain.gameRecord.entity.GameRecord;
 import com.playsoccer.domain.stadium.entity.Stadium;
 import jakarta.persistence.*;
 import lombok.*;
-
-import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.List;
 
 @Entity
 @Getter
